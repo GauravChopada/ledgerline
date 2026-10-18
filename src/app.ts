@@ -3,6 +3,7 @@ import { registerAuth } from './auth.ts';
 import type { Db } from './db.ts';
 import { registerErrorHandler } from './http.ts';
 import { customerRoutes } from './routes/customers.ts';
+import { exportRoutes } from './routes/exports.ts';
 import { invoiceRoutes } from './routes/invoices.ts';
 import { paymentRoutes } from './routes/payments.ts';
 import { reportRoutes } from './routes/reports.ts';
@@ -26,6 +27,7 @@ export function buildApp({ db, now = () => new Date(), logger = false }: AppOpti
   const deps: Deps = { db, now };
   customerRoutes(app, deps);
   invoiceRoutes(app, deps);
+  exportRoutes(app, deps);
   paymentRoutes(app, deps);
   reportRoutes(app, deps);
 
