@@ -1,23 +1,13 @@
 import type { FastifyInstance } from 'fastify';
-import type { SQLInputValue } from 'node:sqlite';
 import { z } from 'zod';
 import type { Deps } from '../app.ts';
-import { all, get, run, tx } from '../db.ts';
+import { get, run, tx } from '../db.ts';
 import { HttpError, IdParams, notFound, parse } from '../http.ts';
 import { newId } from '../ids.ts';
 import { Cents } from '../money.ts';
-import { PageQuery, decodeCursor, toPage } from '../pagination.ts';
-import type { Invoice } from './invoices.ts';
-
-export type Payment = {
-  id: string;
-  invoice_id: string;
-  amount_cents: number;
-  method: string;
-  created_at: string;
-};
-
-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';
+import { PageQuery } from '../pagination.ts';
+import type { Invoice } from '../repo/invoices.ts';
+import { type Payment, listPayments } from '../repo/payments.ts';
 
 const RecordPayment = z.object({
   amount_cents: Cents.positive(),
@@ -72,20 +62,6 @@ export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {
   });
 
   app.get('/payments', async (req) => {
-    const q = parse(PageQuery, req.query);
-    const where = ['tenant_id = ?'];
-    const params: SQLInputValue[] = [req.tenantId];
-    if (q.cursor) {
-      const cursor = decodeCursor(q.cursor);
-      where.push('(created_at, id) < (?, ?)');
-      params.push(cursor.createdAt, cursor.id);
-    }
-    const rows = all<Payment>(
-      db,
-      `SELECT ${COLUMNS} FROM payments WHERE ${where.join(' AND ')} ORDER BY created_at DESC, id DESC LIMIT ?`,
-      ...params,
-      q.limit + 1,
-    );
-    return toPage(rows, q.limit);
+    return listPayments(db, req.tenantId, parse(PageQuery, req.query));
   });
 }
