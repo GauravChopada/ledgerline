@@ -1,0 +1,1272 @@
+{
+  "pr": {
+    "createdAt": "2026-10-18T17:42:19Z",
+    "headRefName": "feat/idempotent-payments-refunds",
+    "headRefOid": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+    "labels": [
+      {
+        "id": "LA_kwDOVOodxs8AAAAC94OMxA",
+        "name": "size:XL",
+        "description": "Changes about 500–999 reviewable lines (set by Codzee)",
+        "color": "c32607"
+      }
+    ],
+    "number": 1,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "title": "Idempotent card payments and refunds"
+  },
+  "issue_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253067428",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#issuecomment-6253067428",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/1",
+      "id": 6253067428,
+      "node_id": "IC_kwDOVOodxs8AAAABdLY8pA",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:43:06Z",
+      "updated_at": "2026-10-18T17:46:47Z",
+      "body": "## Codzee Review — ⛔ Blocked\n\n**1 critical finding** must be fixed before merge.\n\n`1 critical` · `3 major` · `5 minor` · `3 nice to have` · `4 of 12 are test gaps`\n\n| Status | Severity | Confidence | Finding | Where |\n|---|---|---|---|---|\n| ⏳ Open | 🔺 Critical | Confirmed | Concurrent same-key requests charge the card twice | [`routes/payments.ts:65`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023318) |\n| ⏳ Open | 🔶 Major | Confirmed | Float truncation refunds one cent too little | [`routes/payments.ts:129`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023311) |\n| ⏳ Open | 🔶 Major | Confirmed | Production records card payments without charging | [`src/server.ts:7`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023320) |\n| ⏳ Open | 🔶 Major | Confirmed | Gateway calls carry no idempotency key | [`src/provider.ts:12`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023322) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Declined-card retry test misses replay | [`test/idempotency.test.ts:70`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023325) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Revenue test dodges card payment path | [`test/reports.test.ts:12`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023326) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Gateway-failure test misses invoice reopen case | [`test/refunds.test.ts:58`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023329) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Refund test never checks refunded_cents or sub-cent input | [`test/refunds.test.ts:15`](https://github.com/GauravChopada/ledgerline/blob/a17607cce89ece33e109a6717acb25a5cca0f9b3/test/refunds.test.ts#L15) |\n| ⏳ Open | 🟡 Minor | Confirmed | Idempotency keys are never expired | [`migrations/004_idempotency_refunds.sql:2`](https://github.com/GauravChopada/ledgerline/blob/a17607cce89ece33e109a6717acb25a5cca0f9b3/migrations/004_idempotency_refunds.sql#L2) |\n\n<sub>Confidence — Confirmed: checked against the code · Likely: not independently checked · Unconfirmed: worth a look · Edge case: real in the code, but cannot happen today</sub>\n\n<details><summary>💡 <b>Nice to have</b> — 3 smaller suggestions, not blocking</summary>\n\n**1. Fingerprint ignores the HTTP method and route** · [`src/idempotency.ts:33`](https://github.com/GauravChopada/ledgerline/blob/a17607cce89ece33e109a6717acb25a5cca0f9b3/src/idempotency.ts#L33)\n\nThe fingerprint hashes only the `request` object the caller passes, and the key lookup is per tenant, not per operation.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, on branch `feat/idempotent-payments-refunds`. The line number is from commit a17607c; if the file has changed since, find the same code.\n\n[Nice to have] Fingerprint ignores the HTTP method and route — src/idempotency.ts:33\nThe fingerprint hashes only the `request` object the caller passes, and the key lookup is per tenant, not per operation. A key used on one endpoint and then on another endpoint with the same payload shape would replay the wrong response, unless every caller puts `op` in the request. Only record_payment does today.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>\n\n**2. Failed 4xx results are never stored** · [`src/idempotency.ts:48`](https://github.com/GauravChopada/ledgerline/blob/a17607cce89ece33e109a6717acb25a5cca0f9b3/src/idempotency.ts#L48)\n\nThe store check is `status < 500`, but handler errors are thrown, not returned.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, on branch `feat/idempotent-payments-refunds`. The line number is from commit a17607c; if the file has changed since, find the same code.\n\n[Nice to have] Failed 4xx results are never stored — src/idempotency.ts:48\nThe store check is `status < 500`, but handler errors are thrown, not returned. A 402 decline or 409 is never stored and re-runs on retry. The PR says the first response for a key is stored. The idempotency tests only cover this for a declined card. A failed refund after a successful charge can also let a retry charge again.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>\n\n**3. Sandbox charge IDs repeat after restart** · [`src/provider.ts:31`](https://github.com/GauravChopada/ledgerline/blob/a17607cce89ece33e109a6717acb25a5cca0f9b3/src/provider.ts#L31)\n\nchargeId is `ch_sandbox_${charges.length + 1}` from an in-memory array.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, on branch `feat/idempotent-payments-refunds`. The line number is from commit a17607c; if the file has changed since, find the same code.\n\n[Nice to have] Sandbox charge IDs repeat after restart — src/provider.ts:31\nchargeId is `ch_sandbox_${charges.length + 1}` from an in-memory array. After a restart the counter resets and new payments get the same provider_charge_id as stored ones. The charges and refunds arrays also grow without bound in the long-running server. Use a random id such as newId, and only record calls in tests.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>\n\n</details>\n\n<details><summary>✅ <b>Fixed</b> — 1 earlier finding fixed</summary>\n\n| Finding | Where | Fixed in |\n|---|---|---|\n| Refund endpoint ignores tenant ownership | `routes/payments.ts:132` | [`a17607c`](https://github.com/GauravChopada/ledgerline/pull/1/commits/a17607cce89ece33e109a6717acb25a5cca0f9b3) |\n\n</details>\n\n⚠️ **Likely merge conflict** with [#2](https://github.com/GauravChopada/ledgerline/pull/2), [#6](https://github.com/GauravChopada/ledgerline/pull/6), [#3](https://github.com/GauravChopada/ledgerline/pull/3) — both edit the same lines of `src/app.ts`, `src/server.ts`, `src/routes/payments.ts`.\n\n- **Reviewed up to:** [`a17607c`](https://github.com/GauravChopada/ledgerline/pull/1/commits/a17607cce89ece33e109a6717acb25a5cca0f9b3)\n- **Merge gate:** fails on Critical · [change](https://codzee.io/dashboard/settings/organization/review)\n- **Commands:** `@codzee review` reviews the PR again · `@codzee help` lists commands · reply on a Codzee comment to ask or explain why something is intended\n\n<!-- codzee:folded eyJ2IjoyLCJzaGEiOiJhMTc2MDdjY2U4OWVjZTMzZTEwOWE2NzE3YWNiMjVhNWNjYTBmOWIzIiwicmV2aWV3ZXJzIjoiKirwn5GlIFJldmlld2VyOioqIG5vbmUgc3VnZ2VzdGVkIOKAlCBubyBjb2xsYWJvcmF0b3Igb3RoZXIgdGhhbiB0aGUgYXV0aG9yIGhhcyB3cml0ZSBhY2Nlc3MgaGVyZS4gQXNrIGEgdGVhbW1hdGUgdG8gcmV2aWV3LiIsImZvbGRlZCI6W3siZmlsZSI6InNyYy9pZGVtcG90ZW5jeS50cyIsImxpbmUiOjMzLCJib2R5IjoiKipGaW5nZXJwcmludCBpZ25vcmVzIHRoZSBIVFRQIG1ldGhvZCBhbmQgcm91dGUuKiogVGhlIGZpbmdlcnByaW50IGhhc2hlcyBvbmx5IHRoZSBgcmVxdWVzdGAgb2JqZWN0IHRoZSBjYWxsZXIgcGFzc2VzLCBhbmQgdGhlIGtleSBsb29rdXAgaXMgcGVyIHRlbmFudCwgbm90IHBlciBvcGVyYXRpb24uIEEga2V5IHVzZWQgb24gb25lIGVuZHBvaW50IGFuZCB0aGVuIG9uIGFub3RoZXIgZW5kcG9pbnQgd2l0aCB0aGUgc2FtZSBwYXlsb2FkIHNoYXBlIHdvdWxkIHJlcGxheSB0aGUgd3JvbmcgcmVzcG9uc2UsIHVubGVzcyBldmVyeSBjYWxsZXIgcHV0cyBgb3BgIGluIHRoZSByZXF1ZXN0LiBPbmx5IHJlY29yZF9wYXltZW50IGRvZXMgdG9kYXkuIiwiY2F0ZWdvcnkiOiJidWciLCJzZXZlcml0eSI6Im1pbm9yIn0seyJmaWxlIjoic3JjL2lkZW1wb3RlbmN5LnRzIiwibGluZSI6NDgsImJvZHkiOiIqKkZhaWxlZCA0eHggcmVzdWx0cyBhcmUgbmV2ZXIgc3RvcmVkLioqIFRoZSBzdG9yZSBjaGVjayBpcyBgc3RhdHVzIDwgNTAwYCwgYnV0IGhhbmRsZXIgZXJyb3JzIGFyZSB0aHJvd24sIG5vdCByZXR1cm5lZC4gQSA0MDIgZGVjbGluZSBvciA0MDkgaXMgbmV2ZXIgc3RvcmVkIGFuZCByZS1ydW5zIG9uIHJldHJ5LiBUaGUgUFIgc2F5cyB0aGUgZmlyc3QgcmVzcG9uc2UgZm9yIGEga2V5IGlzIHN0b3JlZC4gVGhlIGlkZW1wb3RlbmN5IHRlc3RzIG9ubHkgY292ZXIgdGhpcyBmb3IgYSBkZWNsaW5lZCBjYXJkLiBBIGZhaWxlZCByZWZ1bmQgYWZ0ZXIgYSBzdWNjZXNzZnVsIGNoYXJnZSBjYW4gYWxzbyBsZXQgYSByZXRyeSBjaGFyZ2UgYWdhaW4uIiwiY2F0ZWdvcnkiOiJidWciLCJzZXZlcml0eSI6Im1pbm9yIn0seyJmaWxlIjoic3JjL3Byb3ZpZGVyLnRzIiwibGluZSI6MzEsImJvZHkiOiIqKlNhbmRib3ggY2hhcmdlIElEcyByZXBlYXQgYWZ0ZXIgcmVzdGFydC4qKiBjaGFyZ2VJZCBpcyBgY2hfc2FuZGJveF8ke2NoYXJnZXMubGVuZ3RoICsgMX1gIGZyb20gYW4gaW4tbWVtb3J5IGFycmF5LiBBZnRlciBhIHJlc3RhcnQgdGhlIGNvdW50ZXIgcmVzZXRzIGFuZCBuZXcgcGF5bWVudHMgZ2V0IHRoZSBzYW1lIHByb3ZpZGVyX2NoYXJnZV9pZCBhcyBzdG9yZWQgb25lcy4gVGhlIGNoYXJnZXMgYW5kIHJlZnVuZHMgYXJyYXlzIGFsc28gZ3JvdyB3aXRob3V0IGJvdW5kIGluIHRoZSBsb25nLXJ1bm5pbmcgc2VydmVyLiBVc2UgYSByYW5kb20gaWQgc3VjaCBhcyBuZXdJZCwgYW5kIG9ubHkgcmVjb3JkIGNhbGxzIGluIHRlc3RzLiIsImNhdGVnb3J5IjoiYnVnIiwic2V2ZXJpdHkiOiJtaW5vciJ9LHsiZmlsZSI6InRlc3QvcmVmdW5kcy50ZXN0LnRzIiwibGluZSI6MTUsImJvZHkiOiIqKlJlZnVuZCB0ZXN0IG5ldmVyIGNoZWNrcyByZWZ1bmRlZF9jZW50cyBvciBzdWItY2VudCBpbnB1dC4qKiBUaGUgc3VpdGUgaGFzIG5vIGNhc2UgZm9yIGFtb3VudHMgYmVsb3cgb25lIGNlbnQgKGZvciBleGFtcGxlIDAuMDAxLCB3aGljaCB0cnVuY2F0ZXMgdG8gMCBhbmQgZ2l2ZXMgNDIyKS4gSXQgYWxzbyBoYXMgbm8gdGVzdCB0aGF0IGEgZmFpbGVkIGNhcmQgcmVmdW5kIGluc2lkZSB0aGUgaWRlbXBvdGVudCBwYXltZW50IHBhdGggcmVmdW5kcyB0aGUgY2hhcmdlLiBBZGQgZWRnZS1hbW91bnQgdGVzdHMuIiwiY2F0ZWdvcnkiOiJidWciLCJzZXZlcml0eSI6Im1pbm9yIiwia2luZCI6InRlc3RfZ2FwIn0seyJmaWxlIjoibWlncmF0aW9ucy8wMDRfaWRlbXBvdGVuY3lfcmVmdW5kcy5zcWwiLCJsaW5lIjoyLCJib2R5IjoiKipJZGVtcG90ZW5jeSBrZXlzIGFyZSBuZXZlciBleHBpcmVkLioqIGlkZW1wb3RlbmN5X2tleXMgb25seSBldmVyIGdyb3dzLiBjcmVhdGVkX2F0IGlzIHN0b3JlZCBidXQgbm90aGluZyByZWFkcyBpdCBvciBkZWxldGVzIG9sZCByb3dzLCBzbyBrZXlzIGFyZSByZXRhaW5lZCBmb3JldmVyLiBFdmVyeSBrZXllZCByZXF1ZXN0IGFkZHMgYSByb3cgaG9sZGluZyB0aGUgZnVsbCByZXNwb25zZSBib2R5LiBBZGQgYSBUVEwgY2hlY2sgb24gcmVhZCBhbmQgYSBwZXJpb2RpYyBwdXJnZS4iLCJjYXRlZ29yeSI6InBlcmZvcm1hbmNlIiwic2V2ZXJpdHkiOiJtaW5vciJ9XSwiZml4ZWQiOlt7InRpdGxlIjoiUmVmdW5kIGVuZHBvaW50IGlnbm9yZXMgdGVuYW50IG93bmVyc2hpcCIsIndoZXJlIjoic3JjL3JvdXRlcy9wYXltZW50cy50czoxMzIiLCJzZXZlcml0eSI6ImNyaXRpY2FsIiwic2hhIjoiYTE3NjA3Y2NlODllY2UzM2UxMDlhNjcxN2FjYjI1YTVjY2EwZjliMyIsInVybCI6Imh0dHBzOi8vZ2l0aHViLmNvbS9HYXVyYXZDaG9wYWRhL2xlZGdlcmxpbmUvcHVsbC8xI2Rpc2N1c3Npb25fcjQzMDgwMjMzMDIifV19 -->",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253067428/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253106872",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#issuecomment-6253106872",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/1",
+      "id": 6253106872,
+      "node_id": "IC_kwDOVOodxs8AAAABdLbWuA",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:46:48Z",
+      "updated_at": "2026-10-18T17:46:48Z",
+      "body": "✅ **Fixed in [`a17607c`](https://github.com/GauravChopada/ledgerline/pull/1/commits/a17607cce89ece33e109a6717acb25a5cca0f9b3)** — 1 finding\n\n| Severity | Finding | Where | Why it's fixed |\n|---|---|---|---|\n| 🔺 Critical | Refund endpoint ignores tenant ownership | [`routes/payments.ts:132`](https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023302) | Payment lookup now filters WHERE id = ? AND tenant_id = ?, returning 404 on mismatch, and a test confirms it. |\n\n12 findings still open — see the [summary](https://github.com/GauravChopada/ledgerline/pull/1#issuecomment-6253067428).",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253106872/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 5564108178,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6WNkg",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Codzee left 8 comments below — 5 more findings in the summary comment.",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564108178",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564108178"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "submitted_at": "2026-10-18T17:43:00Z",
+      "commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49"
+    },
+    {
+      "id": 5564125324,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XQjA",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?u=8a1002aefec7aa4bb064a08d2d1265931155c2d6&v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564125324",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564125324"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "submitted_at": "2026-10-18T17:47:28Z",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3"
+    },
+    {
+      "id": 5564125688,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XR-A",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564125688",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#pullrequestreview-5564125688"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "submitted_at": "2026-10-18T17:47:35Z",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3"
+    }
+  ],
+  "review_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023302",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023302,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4Bg",
+      "diff_hunk": "@@ -13,62 +14,180 @@ export type Payment = {\n   id: string;\n   invoice_id: string;\n   amount_cents: number;\n+  refunded_cents: number;\n   method: string;\n+  provider_charge_id: string | null;\n   created_at: string;\n };\n \n-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';\n+export type Refund = {\n+  id: string;\n+  payment_id: string;\n+  amount_cents: number;\n+  reason: string | null;\n+  created_at: string;\n+};\n+\n+const COLUMNS = 'id, invoice_id, amount_cents, refunded_cents, method, provider_charge_id, created_at';\n+\n+const RecordPayment = z\n+  .object({\n+    amount_cents: Cents.positive(),\n+    method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+    source: z.string().min(1).optional(),\n+  })\n+  .refine((p) => p.method !== 'card' || p.source !== undefined, {\n+    message: 'source is required for card payments',\n+    path: ['source'],\n+  });\n \n-const RecordPayment = z.object({\n-  amount_cents: Cents.positive(),\n-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+const CreateRefund = z.object({\n+  // The dashboard sends refund amounts the way the user typed them, in major units (19.99).\n+  amount: z.number().positive(),\n+  reason: z.string().trim().max(500).optional(),\n });\n \n-export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+function payableInvoice(db: Db, tenantId: string, invoiceId: string, amountCents: number): Invoice {\n+  const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', invoiceId, tenantId);\n+  if (!invoice) throw notFound('invoice');\n+  if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+  const due = invoice.total_cents - invoice.amount_paid_cents;\n+  if (amountCents > due) throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+  return invoice;\n+}\n+\n+export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps): void {\n   app.post('/invoices/:id/payments', async (req, reply) => {\n     const { id } = parse(IdParams, req.params);\n     const body = parse(RecordPayment, req.body);\n+    const key = idempotencyKey(req);\n \n-    const payment = tx(db, () => {\n-      const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', id, req.tenantId);\n-      if (!invoice) throw notFound('invoice');\n-      if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+    const result = await withIdempotency(db, req.tenantId, key, { op: 'record_payment', id, body }, now, async () => {\n+      const invoice = payableInvoice(db, req.tenantId, id, body.amount_cents);\n \n-      const due = invoice.total_cents - invoice.amount_paid_cents;\n-      if (body.amount_cents > due) {\n-        throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+      let chargeId: string | null = null;\n+      if (body.method === 'card' && body.source) {\n+        const charge = await provider.charge({\n+          amountCents: body.amount_cents,\n+          currency: invoice.currency,\n+          source: body.source,\n+          description: `Invoice ${invoice.number}`,\n+        });\n+        chargeId = charge.chargeId;\n       }\n \n-      const payment: Payment = {\n-        id: newId('pay'),\n-        invoice_id: id,\n-        amount_cents: body.amount_cents,\n-        method: body.method,\n+      try {\n+        const payment = tx(db, () => {\n+          // Re-check: the invoice may have changed while the card was being charged.\n+          const current = payableInvoice(db, req.tenantId, id, body.amount_cents);\n+          const payment: Payment = {\n+            id: newId('pay'),\n+            invoice_id: id,\n+            amount_cents: body.amount_cents,\n+            refunded_cents: 0,\n+            method: body.method,\n+            provider_charge_id: chargeId,\n+            created_at: now().toISOString(),\n+          };\n+          run(\n+            db,\n+            `INSERT INTO payments (id, tenant_id, invoice_id, amount_cents, method, provider_charge_id, created_at)\n+             VALUES (?, ?, ?, ?, ?, ?, ?)`,\n+            payment.id,\n+            req.tenantId,\n+            id,\n+            payment.amount_cents,\n+            payment.method,\n+            chargeId,\n+            payment.created_at,\n+          );\n+          const paid = current.amount_paid_cents + body.amount_cents;\n+          run(\n+            db,\n+            'UPDATE invoices SET amount_paid_cents = ?, status = ? WHERE id = ?',\n+            paid,\n+            paid === current.total_cents ? 'paid' : 'open',\n+            id,\n+          );\n+          return payment;\n+        });\n+        return { status: 201, body: payment };\n+      } catch (err) {\n+        // Never keep money we could not record.\n+        if (chargeId) await provider.refund(chargeId, body.amount_cents);\n+        throw err;\n+      }\n+    });\n+\n+    if (result.replayed) reply.header('idempotent-replayed', 'true');\n+    return reply.code(result.status).send(result.body);\n+  });\n+\n+  app.post('/payments/:id/refunds', async (req, reply) => {\n+    const { id } = parse(IdParams, req.params);\n+    const body = parse(CreateRefund, req.body);\n+    const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent\n+\n+    const refund = tx(db, () => {\n+      const payment = get<Payment>(db, `SELECT ${COLUMNS} FROM payments WHERE id = ?`, id);",
+      "path": "src/routes/payments.ts",
+      "commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "✅ **Fixed in `a17607c`** — Payment lookup now filters WHERE id = ? AND tenant_id = ?, returning 404 on mismatch, and a test confirms it.\n\n---\n\n🔺 **Security** | Critical\n\n**Refund endpoint ignores tenant ownership.** The refund handler loads the payment with `WHERE id = ?` and never filters on `req.tenantId`. Any authenticated tenant who knows a payment id can refund another tenant's card payment, reopen that tenant's invoice, and insert a refund row under their own tenant. The later UPDATEs are also by id only. Add `AND tenant_id = ?` to the payment lookup, and return 404 when it doesn't match.\n\n<sub>Test to extend: `test/refunds.test.ts:5` — add the case this comment describes</sub>\n\n```suggestion\n      const payment = get<Payment>(db, `SELECT ${COLUMNS} FROM payments WHERE id = ? AND tenant_id = ?`, id, req.tenantId);\n```",
+      "created_at": "2026-10-18T17:43:00Z",
+      "updated_at": "2026-10-18T17:46:40Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023302",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023302"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023302"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023302/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 132,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 147,
+      "position": 1,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023311",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023311,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4Dw",
+      "diff_hunk": "@@ -13,62 +14,180 @@ export type Payment = {\n   id: string;\n   invoice_id: string;\n   amount_cents: number;\n+  refunded_cents: number;\n   method: string;\n+  provider_charge_id: string | null;\n   created_at: string;\n };\n \n-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';\n+export type Refund = {\n+  id: string;\n+  payment_id: string;\n+  amount_cents: number;\n+  reason: string | null;\n+  created_at: string;\n+};\n+\n+const COLUMNS = 'id, invoice_id, amount_cents, refunded_cents, method, provider_charge_id, created_at';\n+\n+const RecordPayment = z\n+  .object({\n+    amount_cents: Cents.positive(),\n+    method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+    source: z.string().min(1).optional(),\n+  })\n+  .refine((p) => p.method !== 'card' || p.source !== undefined, {\n+    message: 'source is required for card payments',\n+    path: ['source'],\n+  });\n \n-const RecordPayment = z.object({\n-  amount_cents: Cents.positive(),\n-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+const CreateRefund = z.object({\n+  // The dashboard sends refund amounts the way the user typed them, in major units (19.99).\n+  amount: z.number().positive(),\n+  reason: z.string().trim().max(500).optional(),\n });\n \n-export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+function payableInvoice(db: Db, tenantId: string, invoiceId: string, amountCents: number): Invoice {\n+  const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', invoiceId, tenantId);\n+  if (!invoice) throw notFound('invoice');\n+  if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+  const due = invoice.total_cents - invoice.amount_paid_cents;\n+  if (amountCents > due) throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+  return invoice;\n+}\n+\n+export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps): void {\n   app.post('/invoices/:id/payments', async (req, reply) => {\n     const { id } = parse(IdParams, req.params);\n     const body = parse(RecordPayment, req.body);\n+    const key = idempotencyKey(req);\n \n-    const payment = tx(db, () => {\n-      const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', id, req.tenantId);\n-      if (!invoice) throw notFound('invoice');\n-      if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+    const result = await withIdempotency(db, req.tenantId, key, { op: 'record_payment', id, body }, now, async () => {\n+      const invoice = payableInvoice(db, req.tenantId, id, body.amount_cents);\n \n-      const due = invoice.total_cents - invoice.amount_paid_cents;\n-      if (body.amount_cents > due) {\n-        throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+      let chargeId: string | null = null;\n+      if (body.method === 'card' && body.source) {\n+        const charge = await provider.charge({\n+          amountCents: body.amount_cents,\n+          currency: invoice.currency,\n+          source: body.source,\n+          description: `Invoice ${invoice.number}`,\n+        });\n+        chargeId = charge.chargeId;\n       }\n \n-      const payment: Payment = {\n-        id: newId('pay'),\n-        invoice_id: id,\n-        amount_cents: body.amount_cents,\n-        method: body.method,\n+      try {\n+        const payment = tx(db, () => {\n+          // Re-check: the invoice may have changed while the card was being charged.\n+          const current = payableInvoice(db, req.tenantId, id, body.amount_cents);\n+          const payment: Payment = {\n+            id: newId('pay'),\n+            invoice_id: id,\n+            amount_cents: body.amount_cents,\n+            refunded_cents: 0,\n+            method: body.method,\n+            provider_charge_id: chargeId,\n+            created_at: now().toISOString(),\n+          };\n+          run(\n+            db,\n+            `INSERT INTO payments (id, tenant_id, invoice_id, amount_cents, method, provider_charge_id, created_at)\n+             VALUES (?, ?, ?, ?, ?, ?, ?)`,\n+            payment.id,\n+            req.tenantId,\n+            id,\n+            payment.amount_cents,\n+            payment.method,\n+            chargeId,\n+            payment.created_at,\n+          );\n+          const paid = current.amount_paid_cents + body.amount_cents;\n+          run(\n+            db,\n+            'UPDATE invoices SET amount_paid_cents = ?, status = ? WHERE id = ?',\n+            paid,\n+            paid === current.total_cents ? 'paid' : 'open',\n+            id,\n+          );\n+          return payment;\n+        });\n+        return { status: 201, body: payment };\n+      } catch (err) {\n+        // Never keep money we could not record.\n+        if (chargeId) await provider.refund(chargeId, body.amount_cents);\n+        throw err;\n+      }\n+    });\n+\n+    if (result.replayed) reply.header('idempotent-replayed', 'true');\n+    return reply.code(result.status).send(result.body);\n+  });\n+\n+  app.post('/payments/:id/refunds', async (req, reply) => {\n+    const { id } = parse(IdParams, req.params);\n+    const body = parse(CreateRefund, req.body);\n+    const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent",
+      "path": "src/routes/payments.ts",
+      "commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Float truncation refunds one cent too little.** `Math.trunc(body.amount * 100)` does float arithmetic, so 19.99 becomes 1998.9999999999998 and truncates to 1998. 0.29 gives 28 cents. Users who type a valid two-decimal amount get a refund one cent short. Use `Math.round(body.amount * 100)` and reject amounts with more than two decimals, or take the amount as integer cents.\n\n<sub>Test to extend: `test/refunds.test.ts:37`, `test/idempotency.test.ts:26` — add the case this comment describes</sub>\n\n```suggestion\n    const amountCents = Math.round(body.amount * 100);\n```",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023311",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023311"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023311"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023311/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 129,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 144,
+      "position": 1,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023318",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023318,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4Fg",
+      "diff_hunk": "@@ -13,62 +14,180 @@ export type Payment = {\n   id: string;\n   invoice_id: string;\n   amount_cents: number;\n+  refunded_cents: number;\n   method: string;\n+  provider_charge_id: string | null;\n   created_at: string;\n };\n \n-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';\n+export type Refund = {\n+  id: string;\n+  payment_id: string;\n+  amount_cents: number;\n+  reason: string | null;\n+  created_at: string;\n+};\n+\n+const COLUMNS = 'id, invoice_id, amount_cents, refunded_cents, method, provider_charge_id, created_at';\n+\n+const RecordPayment = z\n+  .object({\n+    amount_cents: Cents.positive(),\n+    method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+    source: z.string().min(1).optional(),\n+  })\n+  .refine((p) => p.method !== 'card' || p.source !== undefined, {\n+    message: 'source is required for card payments',\n+    path: ['source'],\n+  });\n \n-const RecordPayment = z.object({\n-  amount_cents: Cents.positive(),\n-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+const CreateRefund = z.object({\n+  // The dashboard sends refund amounts the way the user typed them, in major units (19.99).\n+  amount: z.number().positive(),\n+  reason: z.string().trim().max(500).optional(),\n });\n \n-export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+function payableInvoice(db: Db, tenantId: string, invoiceId: string, amountCents: number): Invoice {\n+  const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', invoiceId, tenantId);\n+  if (!invoice) throw notFound('invoice');\n+  if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+  const due = invoice.total_cents - invoice.amount_paid_cents;\n+  if (amountCents > due) throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+  return invoice;\n+}\n+\n+export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps): void {\n   app.post('/invoices/:id/payments', async (req, reply) => {\n     const { id } = parse(IdParams, req.params);\n     const body = parse(RecordPayment, req.body);\n+    const key = idempotencyKey(req);\n \n-    const payment = tx(db, () => {\n-      const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', id, req.tenantId);\n-      if (!invoice) throw notFound('invoice');\n-      if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+    const result = await withIdempotency(db, req.tenantId, key, { op: 'record_payment', id, body }, now, async () => {",
+      "path": "src/routes/payments.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔺 **Bug** | Critical\n\n**Concurrent same-key requests charge the card twice.** `withIdempotency` looks up the key, then awaits the handler, and only stores the response afterwards. Two simultaneous retries with the same key both miss the lookup and both call `provider.charge`. On a partial payment both pass the re-check, so the card is charged and recorded twice. The key must be reserved before the charge, for example by inserting a pending row under a unique (tenant_id, key) index. The migration also has no such unique index.\n\n<sub>Same root cause also at: `src/idempotency.ts:47`, `migrations/004_idempotency_refunds.sql:11`</sub>\n\n<sub>Test to extend: `test/idempotency.test.ts:16` — add the case this comment describes</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Critical] Concurrent same-key requests charge the card twice — src/routes/payments.ts:65\n`withIdempotency` looks up the key, then awaits the handler, and only stores the response afterwards. Two simultaneous retries with the same key both miss the lookup and both call `provider.charge`. On a partial payment both pass the re-check, so the card is charged and recorded twice. The key must be reserved before the charge, for example by inserting a pending row under a unique (tenant_id, key) index. The migration also has no such unique index.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023318",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023318"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023318"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023318/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 65,
+      "original_line": 65,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 72,
+      "position": 72,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023320",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023320,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4GA",
+      "diff_hunk": "@@ -1,8 +1,10 @@\n import { buildApp } from './app.ts';\n import { openDb } from './db.ts';\n+import { sandboxProvider } from './provider.ts';\n \n const db = openDb(process.env.DATABASE_PATH ?? 'ledgerline.db');\n-const app = buildApp({ db, logger: { level: process.env.LOG_LEVEL ?? 'info' } });\n+// Card payments run in test mode until a live gateway adapter lands.\n+const app = buildApp({ db, provider: sandboxProvider(), logger: { level: process.env.LOG_LEVEL ?? 'info' } });",
+      "path": "src/server.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Production records card payments without charging.** server.ts wires sandboxProvider() into the real server, so any `method: card` request with a `tok_` source returns a fabricated chargeId. The invoice is marked paid and no money moves. Fail startup, or refuse card payments, unless a live provider is configured.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Major] Production records card payments without charging — src/server.ts:7\nserver.ts wires sandboxProvider() into the real server, so any `method: card` request with a `tok_` source returns a fabricated chargeId. The invoice is marked paid and no money moves. Fail startup, or refuse card payments, unless a live provider is configured.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023320",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023320"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023320"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023320/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 7,
+      "original_line": 7,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 8,
+      "position": 8,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023322",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023322,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4Gg",
+      "diff_hunk": "@@ -0,0 +1,41 @@\n+import { HttpError } from './http.ts';\n+\n+export type ChargeRequest = {\n+  amountCents: number;\n+  currency: string;\n+  /** Tokenised card from the client-side SDK, e.g. `tok_visa`. */\n+  source: string;\n+  description: string;\n+};\n+\n+export type PaymentProvider = {\n+  charge(request: ChargeRequest): Promise<{ chargeId: string }>;",
+      "path": "src/provider.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Gateway calls carry no idempotency key.** PaymentProvider.charge and refund take no idempotency key. If a gateway call times out after succeeding, a client retry without the Idempotency-Key header charges the card twice. A compensating refund that fails and is retried can refund twice. Add an idempotencyKey parameter, derived from the request key or payment id, and pass it to the gateway.\n\n<sub>Same root cause also at: `src/routes/payments.ts:117`</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Major] Gateway calls carry no idempotency key — src/provider.ts:12\nPaymentProvider.charge and refund take no idempotency key. If a gateway call times out after succeeding, a client retry without the Idempotency-Key header charges the card twice. A compensating refund that fails and is retried can refund twice. Add an idempotencyKey parameter, derived from the request key or payment id, and pass it to the gateway.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023322",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023322"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023322"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023322/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 12,
+      "original_line": 12,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 12,
+      "position": 12,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023325",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023325,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4HQ",
+      "diff_hunk": "@@ -0,0 +1,83 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { createCustomer, createOpenInvoice, setup } from './helpers.ts';\n+\n+test('a retried card payment is charged once and replays the first response', async () => {\n+  const { acme, provider } = await setup();\n+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 200_00);\n+  const send = () =>\n+    acme.request({\n+      method: 'POST',\n+      url: `/invoices/${invoice.id}/payments`,\n+      headers: { 'idempotency-key': 'retry-123' },\n+      payload: { amount_cents: 200_00, method: 'card', source: 'tok_visa' },\n+    });\n+\n+  const first = await send();\n+  const retry = await send();\n+\n+  assert.equal(first.status, 201);\n+  assert.equal(retry.status, 201);\n+  assert.deepEqual(retry.body, first.body);\n+  assert.equal(provider.charges.length, 1);\n+  assert.equal(first.body.provider_charge_id, 'ch_sandbox_1');\n+});\n+\n+test('reusing a key for a different request is rejected', async () => {\n+  const { acme } = await setup();\n+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 200_00);\n+  const pay = (amount: number) =>\n+    acme.request({\n+      method: 'POST',\n+      url: `/invoices/${invoice.id}/payments`,\n+      headers: { 'idempotency-key': 'k1' },\n+      payload: { amount_cents: amount, method: 'cash' },\n+    });\n+\n+  assert.equal((await pay(50_00)).status, 201);\n+  const res = await pay(60_00);\n+  assert.equal(res.status, 422);\n+  assert.equal(res.body.error, 'idempotency_key_reused');\n+});\n+\n+test('keys are scoped to a tenant', async () => {\n+  const { acme, newTenant } = await setup();\n+  const globex = newTenant('Globex');\n+  for (const tenant of [acme, globex]) {\n+    const invoice = await createOpenInvoice(tenant, (await createCustomer(tenant)).id, 10_00);\n+    const res = await tenant.request({\n+      method: 'POST',\n+      url: `/invoices/${invoice.id}/payments`,\n+      headers: { 'idempotency-key': 'shared-key' },\n+      payload: { amount_cents: 10_00, method: 'cash' },\n+    });\n+    assert.equal(res.status, 201);\n+  }\n+});\n+\n+test('a declined card is not stored, so the client can retry with the same key', async () => {\n+  const { acme, provider } = await setup();\n+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 10_00);\n+  const pay = (source: string) =>\n+    acme.request({\n+      method: 'POST',\n+      url: `/invoices/${invoice.id}/payments`,\n+      headers: { 'idempotency-key': 'card-attempt' },\n+      payload: { amount_cents: 10_00, method: 'card', source },\n+    });\n+\n+  assert.equal((await pay('tok_fail_insufficient_funds')).status, 402);\n+  assert.equal((await pay('tok_fail_insufficient_funds')).status, 402);",
+      "path": "test/idempotency.test.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Test gap** | Minor\n\n**Declined-card retry test misses replay.** The declined-card test asserts 402 twice and `provider.charges.length === 0`. That passes whether or not the failed attempt left anything behind, and it never retries with a good source under the same key. It also doesn't check that the invoice is unchanged. The 'can retry' claim is only weakly tested.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Minor · missing test] Declined-card retry test misses replay — test/idempotency.test.ts:70\nThe declined-card test asserts 402 twice and `provider.charges.length === 0`. That passes whether or not the failed attempt left anything behind, and it never retries with a good source under the same key. It also doesn't check that the invoice is unchanged. The 'can retry' claim is only weakly tested.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023325",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023325"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023325"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023325/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 70,
+      "original_line": 70,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 70,
+      "position": 70,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023326",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023326,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4Hg",
+      "diff_hunk": "@@ -9,7 +9,7 @@ test('sums revenue per month and currency', async () => {\n   const eur = await createOpenInvoice(acme, customer.id, 500_00, 'EUR');\n \n   const pay = (invoiceId: string, amount: number) =>\n-    acme.request({ method: 'POST', url: `/invoices/${invoiceId}/payments`, payload: { amount_cents: amount, method: 'card' } });\n+    acme.request({ method: 'POST', url: `/invoices/${invoiceId}/payments`, payload: { amount_cents: amount, method: 'bank_transfer' } });",
+      "path": "test/reports.test.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Test gap** | Minor\n\n**Revenue test dodges card payment path.** The `pay` helper was switched from `card` to `bank_transfer` only to avoid needing a `source`. The revenue report test therefore no longer covers card payments, which now go through the provider. Keep the card method and pass `source: 'tok_visa'`, or add a card case.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Minor · missing test] Revenue test dodges card payment path — test/reports.test.ts:12\nThe `pay` helper was switched from `card` to `bank_transfer` only to avoid needing a `source`. The revenue report test therefore no longer covers card payments, which now go through the provider. Keep the card method and pass `source: 'tok_visa'`, or add a card case.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023326",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023326"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023326"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023326/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 12,
+      "original_line": 12,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 5,
+      "position": 5,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023329",
+      "pull_request_review_id": 5564108178,
+      "id": 4308023329,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMc4IQ",
+      "diff_hunk": "@@ -0,0 +1,77 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { type TestClient, createCustomer, createOpenInvoice, setup } from './helpers.ts';\n+\n+async function paidByCard(t: TestClient, totalCents: number) {\n+  const invoice = await createOpenInvoice(t, (await createCustomer(t)).id, totalCents);\n+  const payment = await t.request({\n+    method: 'POST',\n+    url: `/invoices/${invoice.id}/payments`,\n+    payload: { amount_cents: totalCents, method: 'card', source: 'tok_visa' },\n+  });\n+  return { invoice, payment: payment.body };\n+}\n+\n+test('a partial refund reopens a paid invoice and refunds the card', async () => {\n+  const { acme, provider } = await setup();\n+  const { invoice, payment } = await paidByCard(acme, 120_00);\n+\n+  const res = await acme.request({\n+    method: 'POST',\n+    url: `/payments/${payment.id}/refunds`,\n+    payload: { amount: 25.5, reason: 'Unused hours' },\n+  });\n+  assert.equal(res.status, 201);\n+  assert.equal(res.body.amount_cents, 25_50);\n+  assert.deepEqual(provider.refunds, [{ chargeId: payment.provider_charge_id, amountCents: 25_50 }]);\n+\n+  const after = await acme.request({ method: 'GET', url: `/invoices/${invoice.id}` });\n+  assert.equal(after.body.status, 'open');\n+  assert.equal(after.body.amount_paid_cents, 94_50);\n+});\n+\n+test('cannot refund more than was paid', async () => {\n+  const { acme } = await setup();\n+  const { payment } = await paidByCard(acme, 50_00);\n+\n+  const first = await acme.request({ method: 'POST', url: `/payments/${payment.id}/refunds`, payload: { amount: 40 } });\n+  assert.equal(first.status, 201);\n+  const second = await acme.request({ method: 'POST', url: `/payments/${payment.id}/refunds`, payload: { amount: 20 } });\n+  assert.equal(second.status, 422);\n+  assert.equal(second.body.error, 'invalid_refund_amount');\n+});\n+\n+test('refunding a cash payment does not call the gateway', async () => {\n+  const { acme, provider } = await setup();\n+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 30_00);\n+  const payment = await acme.request({\n+    method: 'POST',\n+    url: `/invoices/${invoice.id}/payments`,\n+    payload: { amount_cents: 30_00, method: 'cash' },\n+  });\n+\n+  const res = await acme.request({ method: 'POST', url: `/payments/${payment.body.id}/refunds`, payload: { amount: 30 } });\n+  assert.equal(res.status, 201);\n+  assert.equal(provider.refunds.length, 0);\n+});\n+\n+test('a gateway failure leaves the ledger untouched', async () => {",
+      "path": "test/refunds.test.ts",
+      "commit_id": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Test gap** | Minor\n\n**Gateway-failure test misses invoice reopen case.** The rollback test only refunds the full 80 on a paid invoice and checks the invoice. It never checks `payments.refunded_cents` or that the `refunds` row was deleted. It also asserts a bare 500, which hides that the rollback runs after the ledger was briefly changed and committed. Assert those rows too.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 1. The line number is from commit f7222f9; if the file has changed since, find the same code.\n\n[Minor · missing test] Gateway-failure test misses invoice reopen case — test/refunds.test.ts:58\nThe rollback test only refunds the full 80 on a paid invoice and checks the invoice. It never checks `payments.refunded_cents` or that the `refunds` row was deleted. It also asserts a bare 500, which hides that the rollback runs after the ledger was briefly changed and committed. Assert those rows too.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:43:01Z",
+      "updated_at": "2026-10-18T17:43:01Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023329",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023329"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308023329"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308023329/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 58,
+      "original_line": 58,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 58,
+      "position": 58,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308039683",
+      "pull_request_review_id": 5564125324,
+      "id": 4308039683,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMd4Aw",
+      "diff_hunk": "@@ -13,62 +14,180 @@ export type Payment = {\n   id: string;\n   invoice_id: string;\n   amount_cents: number;\n+  refunded_cents: number;\n   method: string;\n+  provider_charge_id: string | null;\n   created_at: string;\n };\n \n-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';\n+export type Refund = {\n+  id: string;\n+  payment_id: string;\n+  amount_cents: number;\n+  reason: string | null;\n+  created_at: string;\n+};\n+\n+const COLUMNS = 'id, invoice_id, amount_cents, refunded_cents, method, provider_charge_id, created_at';\n+\n+const RecordPayment = z\n+  .object({\n+    amount_cents: Cents.positive(),\n+    method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+    source: z.string().min(1).optional(),\n+  })\n+  .refine((p) => p.method !== 'card' || p.source !== undefined, {\n+    message: 'source is required for card payments',\n+    path: ['source'],\n+  });\n \n-const RecordPayment = z.object({\n-  amount_cents: Cents.positive(),\n-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+const CreateRefund = z.object({\n+  // The dashboard sends refund amounts the way the user typed them, in major units (19.99).\n+  amount: z.number().positive(),\n+  reason: z.string().trim().max(500).optional(),\n });\n \n-export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+function payableInvoice(db: Db, tenantId: string, invoiceId: string, amountCents: number): Invoice {\n+  const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', invoiceId, tenantId);\n+  if (!invoice) throw notFound('invoice');\n+  if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+  const due = invoice.total_cents - invoice.amount_paid_cents;\n+  if (amountCents > due) throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+  return invoice;\n+}\n+\n+export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps): void {\n   app.post('/invoices/:id/payments', async (req, reply) => {\n     const { id } = parse(IdParams, req.params);\n     const body = parse(RecordPayment, req.body);\n+    const key = idempotencyKey(req);\n \n-    const payment = tx(db, () => {\n-      const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', id, req.tenantId);\n-      if (!invoice) throw notFound('invoice');\n-      if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+    const result = await withIdempotency(db, req.tenantId, key, { op: 'record_payment', id, body }, now, async () => {\n+      const invoice = payableInvoice(db, req.tenantId, id, body.amount_cents);\n \n-      const due = invoice.total_cents - invoice.amount_paid_cents;\n-      if (body.amount_cents > due) {\n-        throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+      let chargeId: string | null = null;\n+      if (body.method === 'card' && body.source) {\n+        const charge = await provider.charge({\n+          amountCents: body.amount_cents,\n+          currency: invoice.currency,\n+          source: body.source,\n+          description: `Invoice ${invoice.number}`,\n+        });\n+        chargeId = charge.chargeId;\n       }\n \n-      const payment: Payment = {\n-        id: newId('pay'),\n-        invoice_id: id,\n-        amount_cents: body.amount_cents,\n-        method: body.method,\n+      try {\n+        const payment = tx(db, () => {\n+          // Re-check: the invoice may have changed while the card was being charged.\n+          const current = payableInvoice(db, req.tenantId, id, body.amount_cents);\n+          const payment: Payment = {\n+            id: newId('pay'),\n+            invoice_id: id,\n+            amount_cents: body.amount_cents,\n+            refunded_cents: 0,\n+            method: body.method,\n+            provider_charge_id: chargeId,\n+            created_at: now().toISOString(),\n+          };\n+          run(\n+            db,\n+            `INSERT INTO payments (id, tenant_id, invoice_id, amount_cents, method, provider_charge_id, created_at)\n+             VALUES (?, ?, ?, ?, ?, ?, ?)`,\n+            payment.id,\n+            req.tenantId,\n+            id,\n+            payment.amount_cents,\n+            payment.method,\n+            chargeId,\n+            payment.created_at,\n+          );\n+          const paid = current.amount_paid_cents + body.amount_cents;\n+          run(\n+            db,\n+            'UPDATE invoices SET amount_paid_cents = ?, status = ? WHERE id = ?',\n+            paid,\n+            paid === current.total_cents ? 'paid' : 'open',\n+            id,\n+          );\n+          return payment;\n+        });\n+        return { status: 201, body: payment };\n+      } catch (err) {\n+        // Never keep money we could not record.\n+        if (chargeId) await provider.refund(chargeId, body.amount_cents);\n+        throw err;\n+      }\n+    });\n+\n+    if (result.replayed) reply.header('idempotent-replayed', 'true');\n+    return reply.code(result.status).send(result.body);\n+  });\n+\n+  app.post('/payments/:id/refunds', async (req, reply) => {\n+    const { id } = parse(IdParams, req.params);\n+    const body = parse(CreateRefund, req.body);\n+    const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent",
+      "path": "src/routes/payments.ts",
+      "commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "@codzee I pushed a17607c, which adds Number.EPSILON before truncating. Does that fix this one?",
+      "created_at": "2026-10-18T17:47:28Z",
+      "updated_at": "2026-10-18T17:47:28Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308039683",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308039683"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308039683"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308039683/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 129,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308023311,
+      "author_association": "OWNER",
+      "original_position": 144,
+      "position": 1,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308040026",
+      "pull_request_review_id": 5564125688,
+      "id": 4308040026,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMd5Wg",
+      "diff_hunk": "@@ -13,62 +14,180 @@ export type Payment = {\n   id: string;\n   invoice_id: string;\n   amount_cents: number;\n+  refunded_cents: number;\n   method: string;\n+  provider_charge_id: string | null;\n   created_at: string;\n };\n \n-const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';\n+export type Refund = {\n+  id: string;\n+  payment_id: string;\n+  amount_cents: number;\n+  reason: string | null;\n+  created_at: string;\n+};\n+\n+const COLUMNS = 'id, invoice_id, amount_cents, refunded_cents, method, provider_charge_id, created_at';\n+\n+const RecordPayment = z\n+  .object({\n+    amount_cents: Cents.positive(),\n+    method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+    source: z.string().min(1).optional(),\n+  })\n+  .refine((p) => p.method !== 'card' || p.source !== undefined, {\n+    message: 'source is required for card payments',\n+    path: ['source'],\n+  });\n \n-const RecordPayment = z.object({\n-  amount_cents: Cents.positive(),\n-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),\n+const CreateRefund = z.object({\n+  // The dashboard sends refund amounts the way the user typed them, in major units (19.99).\n+  amount: z.number().positive(),\n+  reason: z.string().trim().max(500).optional(),\n });\n \n-export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+function payableInvoice(db: Db, tenantId: string, invoiceId: string, amountCents: number): Invoice {\n+  const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', invoiceId, tenantId);\n+  if (!invoice) throw notFound('invoice');\n+  if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+  const due = invoice.total_cents - invoice.amount_paid_cents;\n+  if (amountCents > due) throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+  return invoice;\n+}\n+\n+export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps): void {\n   app.post('/invoices/:id/payments', async (req, reply) => {\n     const { id } = parse(IdParams, req.params);\n     const body = parse(RecordPayment, req.body);\n+    const key = idempotencyKey(req);\n \n-    const payment = tx(db, () => {\n-      const invoice = get<Invoice>(db, 'SELECT * FROM invoices WHERE id = ? AND tenant_id = ?', id, req.tenantId);\n-      if (!invoice) throw notFound('invoice');\n-      if (invoice.status !== 'open') throw new HttpError(409, 'invalid_state', `invoice is ${invoice.status}`);\n+    const result = await withIdempotency(db, req.tenantId, key, { op: 'record_payment', id, body }, now, async () => {\n+      const invoice = payableInvoice(db, req.tenantId, id, body.amount_cents);\n \n-      const due = invoice.total_cents - invoice.amount_paid_cents;\n-      if (body.amount_cents > due) {\n-        throw new HttpError(422, 'overpayment', `amount exceeds the ${due} cents still due`);\n+      let chargeId: string | null = null;\n+      if (body.method === 'card' && body.source) {\n+        const charge = await provider.charge({\n+          amountCents: body.amount_cents,\n+          currency: invoice.currency,\n+          source: body.source,\n+          description: `Invoice ${invoice.number}`,\n+        });\n+        chargeId = charge.chargeId;\n       }\n \n-      const payment: Payment = {\n-        id: newId('pay'),\n-        invoice_id: id,\n-        amount_cents: body.amount_cents,\n-        method: body.method,\n+      try {\n+        const payment = tx(db, () => {\n+          // Re-check: the invoice may have changed while the card was being charged.\n+          const current = payableInvoice(db, req.tenantId, id, body.amount_cents);\n+          const payment: Payment = {\n+            id: newId('pay'),\n+            invoice_id: id,\n+            amount_cents: body.amount_cents,\n+            refunded_cents: 0,\n+            method: body.method,\n+            provider_charge_id: chargeId,\n+            created_at: now().toISOString(),\n+          };\n+          run(\n+            db,\n+            `INSERT INTO payments (id, tenant_id, invoice_id, amount_cents, method, provider_charge_id, created_at)\n+             VALUES (?, ?, ?, ?, ?, ?, ?)`,\n+            payment.id,\n+            req.tenantId,\n+            id,\n+            payment.amount_cents,\n+            payment.method,\n+            chargeId,\n+            payment.created_at,\n+          );\n+          const paid = current.amount_paid_cents + body.amount_cents;\n+          run(\n+            db,\n+            'UPDATE invoices SET amount_paid_cents = ?, status = ? WHERE id = ?',\n+            paid,\n+            paid === current.total_cents ? 'paid' : 'open',\n+            id,\n+          );\n+          return payment;\n+        });\n+        return { status: 201, body: payment };\n+      } catch (err) {\n+        // Never keep money we could not record.\n+        if (chargeId) await provider.refund(chargeId, body.amount_cents);\n+        throw err;\n+      }\n+    });\n+\n+    if (result.replayed) reply.header('idempotent-replayed', 'true');\n+    return reply.code(result.status).send(result.body);\n+  });\n+\n+  app.post('/payments/:id/refunds', async (req, reply) => {\n+    const { id } = parse(IdParams, req.params);\n+    const body = parse(CreateRefund, req.body);\n+    const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent",
+      "path": "src/routes/payments.ts",
+      "commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "original_commit_id": "f7222f9a9f1014a9437a66404dced0f1aeda1b49",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "That fixes the 0.29 case (Number.EPSILON pushes 28.999... up to 29 before truncating), but it's fragile: for larger amounts the float error can exceed EPSILON*100, and it still accepts non-two-decimal input silently (truncating instead of rejecting). Math.round(body.amount * 100) is simpler and covers this case too — I'd still prefer that, or validating amount has ≤2 decimals.",
+      "created_at": "2026-10-18T17:47:35Z",
+      "updated_at": "2026-10-18T17:47:35Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308040026",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308040026"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/1#discussion_r4308040026"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308040026/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": null,
+      "original_line": 129,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308023311,
+      "author_association": "NONE",
+      "original_position": 144,
+      "position": 1,
+      "subject_type": "line"
+    }
+  ],
+  "check_runs": [
+    {
+      "id": 117744553317,
+      "name": "Codzee review",
+      "node_id": "CR_kwDOVOodxs8AAAAbah9NZQ",
+      "head_sha": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "external_id": "",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744553317",
+      "html_url": "https://github.com/GauravChopada/ledgerline/runs/117744553317",
+      "details_url": "https://github.com/GauravChopada/ledgerline/pull/1#issuecomment-6253067428",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-18T17:45:24Z",
+      "completed_at": "2026-10-18T17:46:54Z",
+      "output": {
+        "title": "⛔ 1 critical finding open · 12 findings · 1 critical, 3 major",
+        "summary": "Updates the refund endpoint to scope payment lookup by tenant_id (preventing cross-tenant refund access) and adjusts the cents conversion to add Number.EPSILON before truncating, avoiding floating-point rounding errors for amounts like 0.29. Adds tests covering cross-tenant refund rejection and sub-dollar refund precision.",
+        "text": null,
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744553317/annotations"
+      },
+      "check_suite": {
+        "id": 106093967505
+      },
+      "app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+          "id": 4911316655,
+          "number": 1,
+          "head": {
+            "ref": "feat/idempotent-payments-refunds",
+            "sha": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 117744552443,
+      "name": "test",
+      "node_id": "CR_kwDOVOodxs8AAAAbah9J-w",
+      "head_sha": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+      "external_id": "cb6a5605-0c20-5441-983f-0deb2db31cf3",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744552443",
+      "html_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39151034396/job/117744552443",
+      "details_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39151034396/job/117744552443",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:45:26Z",
+      "completed_at": "2026-10-18T17:45:37Z",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744552443/annotations"
+      },
+      "check_suite": {
+        "id": 106093975756
+      },
+      "app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/1",
+          "id": 4911316655,
+          "number": 1,
+          "head": {
+            "ref": "feat/idempotent-payments-refunds",
+            "sha": "a17607cce89ece33e109a6717acb25a5cca0f9b3",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reactions": [],
+  "captured_at": "2026-10-18T17:59:45Z"
+}

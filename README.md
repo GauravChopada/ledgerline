@@ -1,5 +1,9 @@
 # ledgerline
 
+> **About this repository.** I built ledgerline to evaluate [Codzee](https://www.codzee.io) for its
+> first-round assessment. Pull requests #1–#5 and #7 contain bugs I planted on purpose (#6 is a clean control); the answer key was
+> hashed into `main` before any PR was opened. Results and product feedback: **[EVALUATION.md](EVALUATION.md)**.
+
 A small invoicing and payments API for freelancers and small studios: customers, invoices with
 line items, payments against invoices, and a monthly revenue report. Multi-tenant, one API key per
 tenant.

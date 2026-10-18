@@ -1,0 +1,1015 @@
+{
+  "pr": {
+    "createdAt": "2026-10-18T17:43:37Z",
+    "headRefName": "chore/docker-and-preview-deploys",
+    "headRefOid": "22420c977226028961fbda238da59f409bae32f4",
+    "labels": [
+      {
+        "id": "LA_kwDOVOodxs8AAAAC94MnKQ",
+        "name": "size:L",
+        "description": "Changes about 100–499 reviewable lines (set by Codzee)",
+        "color": "a14c05"
+      }
+    ],
+    "number": 5,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "title": "Dockerfile, preview deploys and unique customer emails"
+  },
+  "issue_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253089243",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#issuecomment-6253089243",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/5",
+      "id": 6253089243,
+      "node_id": "IC_kwDOVOodxs8AAAABdLaR2w",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:45:07Z",
+      "updated_at": "2026-10-18T17:45:07Z",
+      "body": "## Codzee Review — ⛔ Blocked\n\n**2 critical findings** must be fixed before merge.\n\n`2 critical` · `2 major` · `1 minor` · `1 of 5 is a test gap`\n\n| Status | Severity | Confidence | Finding | Where |\n|---|---|---|---|---|\n| ⏳ Open | 🔺 Critical | Confirmed | Fork PR code runs with deploy secrets | [`workflows/preview.yml:23`](https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031599) |\n| ⏳ Open | 🔺 Critical | Confirmed | Email uniqueness leaks across tenants | [`routes/customers.ts:37`](https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031603) |\n| ⏳ Open | 🔶 Major | Confirmed | COPY overwrites production-only node_modules and leaks files | [`Dockerfile:8`](https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031607) |\n| ⏳ Open | 🔶 Major | Confirmed | 🧪 Test gap: No cross-tenant duplicate email test | [`test/customers.test.ts:74`](https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031609) |\n| ⏳ Open | 🟡 Minor | Confirmed | Preview apps are never destroyed | [`workflows/preview.yml:6`](https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031611) |\n\n<sub>Confidence — Confirmed: checked against the code · Likely: not independently checked · Unconfirmed: worth a look · Edge case: real in the code, but cannot happen today</sub>\n\n⚠️ **Likely merge conflict** with [#3](https://github.com/GauravChopada/ledgerline/pull/3), [#6](https://github.com/GauravChopada/ledgerline/pull/6) — both edit the same lines of `src/routes/customers.ts`, `README.md`.\n\n- **Reviewed up to:** [`22420c9`](https://github.com/GauravChopada/ledgerline/pull/5/commits/22420c977226028961fbda238da59f409bae32f4)\n- **Merge gate:** fails on Critical · [change](https://codzee.io/dashboard/settings/organization/review)\n- **Commands:** `@codzee review` reviews the PR again · `@codzee help` lists commands · reply on a Codzee comment to ask or explain why something is intended\n\n<!-- codzee:folded eyJ2IjoyLCJzaGEiOiIyMjQyMGM5NzcyMjYwMjg5NjFmYmRhMjM4ZGE1OWY0MDliYWUzMmY0IiwicmV2aWV3ZXJzIjoiKirwn5GlIFJldmlld2VyOioqIG5vbmUgc3VnZ2VzdGVkIOKAlCBubyBjb2xsYWJvcmF0b3Igb3RoZXIgdGhhbiB0aGUgYXV0aG9yIGhhcyB3cml0ZSBhY2Nlc3MgaGVyZS4gQXNrIGEgdGVhbW1hdGUgdG8gcmV2aWV3LiIsImZvbGRlZCI6W10sImZpeGVkIjpbXX0= -->",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253089243/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114659",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#issuecomment-6253114659",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/5",
+      "id": 6253114659,
+      "node_id": "IC_kwDOVOodxs8AAAABdLb1Iw",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:47:32Z",
+      "updated_at": "2026-10-18T17:47:32Z",
+      "body": "@codzee anything else in the Dockerfile worth fixing besides the COPY issue?",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114659/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 5564117059,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6WwQw",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Codzee left 5 comments below — overview in the summary comment.",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564117059",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564117059"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "submitted_at": "2026-10-18T17:45:01Z",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4"
+    },
+    {
+      "id": 5564132042,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6Xqyg",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?u=8a1002aefec7aa4bb064a08d2d1265931155c2d6&v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564132042",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564132042"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:29Z",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4"
+    },
+    {
+      "id": 5564132510,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6Xsng",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564132510",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#pullrequestreview-5564132510"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:37Z",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4"
+    }
+  ],
+  "review_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031599",
+      "pull_request_review_id": 5564117059,
+      "id": 4308031599,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdYbw",
+      "diff_hunk": "@@ -0,0 +1,48 @@\n+name: Preview\n+\n+# Every pull request gets its own short-lived app so reviewers can click through the change.\n+on:\n+  pull_request_target:\n+    types: [opened, synchronize, reopened]\n+\n+permissions:\n+  contents: read\n+  pull-requests: write\n+\n+concurrency:\n+  group: preview-${{ github.event.pull_request.number }}\n+  cancel-in-progress: true\n+\n+jobs:\n+  deploy:\n+    runs-on: ubuntu-latest\n+    environment: preview\n+    steps:\n+      - uses: actions/checkout@v4\n+        with:\n+          ref: ${{ github.event.pull_request.head.sha }}",
+      "path": ".github/workflows/preview.yml",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔺 **Security** | Critical\n\n**Fork PR code runs with deploy secrets.** The workflow triggers on `pull_request_target`, checks out `pull_request.head.sha`, and runs `npm ci` and `npm test` from it. Any PR author, including a fork, can run code in the base-repo context with a write token and the `preview` environment. A malicious test can write to `$GITHUB_ENV` or `$GITHUB_PATH`, so the later step that holds `FLY_API_TOKEN` runs attacker code. The PR's own Dockerfile and fly.toml also get deployed with that token. Fix: trigger on `pull_request`, and skip PRs whose head repo isn't this repo.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 5. The line number is from commit 22420c9; if the file has changed since, find the same code.\n\n[Critical] Fork PR code runs with deploy secrets — .github/workflows/preview.yml:23\nThe workflow triggers on `pull_request_target`, checks out `pull_request.head.sha`, and runs `npm ci` and `npm test` from it. Any PR author, including a fork, can run code in the base-repo context with a write token and the `preview` environment. A malicious test can write to `$GITHUB_ENV` or `$GITHUB_PATH`, so the later step that holds `FLY_API_TOKEN` runs attacker code. The PR's own Dockerfile and fly.toml also get deployed with that token. Fix: trigger on `pull_request`, and skip PRs whose head repo isn't this repo.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:01Z",
+      "updated_at": "2026-10-18T17:45:02Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031599",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031599"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031599"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031599/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 23,
+      "original_line": 23,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 23,
+      "position": 23,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031603",
+      "pull_request_review_id": 5564117059,
+      "id": 4308031603,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdYcw",
+      "diff_hunk": "@@ -20,13 +20,25 @@ const COLUMNS = 'id, name, email, created_at, updated_at';\n \n const CreateCustomer = z.object({\n   name: z.string().trim().min(1).max(200),\n-  email: z.email().max(320),\n+  email: z\n+    .email()\n+    .max(320)\n+    .transform((email) => email.toLowerCase()),\n });\n \n const UpdateCustomer = CreateCustomer.partial().refine((v) => Object.keys(v).length > 0, {\n   message: 'provide at least one field to update',\n });\n \n+const SQLITE_CONSTRAINT_UNIQUE = 2067;\n+\n+function rethrowDuplicateEmail(err: unknown): never {\n+  if ((err as { errcode?: number }).errcode === SQLITE_CONSTRAINT_UNIQUE) {\n+    throw new HttpError(409, 'customer_exists', 'a customer with this email already exists');",
+      "path": "src/routes/customers.ts",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔺 **Bug** | Critical\n\n**Email uniqueness leaks across tenants.** rethrowDuplicateEmail turns a violation of migration 006's global `customers (email)` index into `409 customer_exists`, but that index has no `tenant_id`. If tenant A has ada@example.com, tenant B's POST /customers or PATCH with it gets 409, confirming A's customer exists and blocking B's legitimate customer. This breaks the README's tenant isolation promise. Make the index `(tenant_id, email)`. The PATCH catch at line 109 has the same problem.\n\n<sub>Same root cause also at: `migrations/006_customer_email_unique.sql:3`, `migrations/006_customer_email_unique.sql:3`</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 5. The line number is from commit 22420c9; if the file has changed since, find the same code.\n\n[Critical] Email uniqueness leaks across tenants — src/routes/customers.ts:37\nrethrowDuplicateEmail turns a violation of migration 006's global `customers (email)` index into `409 customer_exists`, but that index has no `tenant_id`. If tenant A has ada@example.com, tenant B's POST /customers or PATCH with it gets 409, confirming A's customer exists and blocking B's legitimate customer. This breaks the README's tenant isolation promise. Make the index `(tenant_id, email)`. The PATCH catch at line 109 has the same problem.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:01Z",
+      "updated_at": "2026-10-18T17:45:02Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031603",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031603"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031603"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031603/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 37,
+      "original_line": 37,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 28,
+      "position": 28,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031607",
+      "pull_request_review_id": 5564117059,
+      "id": 4308031607,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdYdw",
+      "diff_hunk": "@@ -0,0 +1,21 @@\n+FROM node:24-slim\n+\n+WORKDIR /app\n+\n+COPY package.json package-lock.json ./\n+RUN npm ci --omit=dev\n+\n+COPY . .",
+      "path": "Dockerfile",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Security** | Major\n\n**COPY overwrites production-only node_modules and leaks files.** There is no `.dockerignore`, so `COPY . .` copies the build context's `node_modules` over the `npm ci --omit=dev` result. It also copies any local `.env` and `*.db` into the image layer, and `.git`. The CI workflow runs a full `npm ci` before `flyctl deploy`, so the preview image ships devDependencies, including typescript. Add a `.dockerignore` with node_modules, .git, .env, *.db* and .github.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 5. The line number is from commit 22420c9; if the file has changed since, find the same code.\n\n[Major] COPY overwrites production-only node_modules and leaks files — Dockerfile:8\nThere is no `.dockerignore`, so `COPY . .` copies the build context's `node_modules` over the `npm ci --omit=dev` result. It also copies any local `.env` and `*.db` into the image layer, and `.git`. The CI workflow runs a full `npm ci` before `flyctl deploy`, so the preview image ships devDependencies, including typescript. Add a `.dockerignore` with node_modules, .git, .env, *.db* and .github.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:02Z",
+      "updated_at": "2026-10-18T17:45:02Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031607",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031607"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031607"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031607/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 8,
+      "original_line": 8,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 8,
+      "position": 8,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031609",
+      "pull_request_review_id": 5564117059,
+      "id": 4308031609,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdYeQ",
+      "diff_hunk": "@@ -64,3 +64,19 @@ test('lists a customer’s invoices', async () => {\n   assert.equal(res.status, 200);\n   assert.deepEqual(res.body.items.map((i: { id: string }) => i.id), [invoice.id]);\n });\n+\n+test('emails are unique and case-insensitive', async () => {\n+  const { acme } = await setup();\n+  await createCustomer(acme, 'Ada', 'ada@example.com');\n+  const res = await acme.request({ method: 'POST', url: '/customers', payload: { name: 'Ada again', email: 'ADA@example.com' } });\n+  assert.equal(res.status, 409);\n+  assert.equal(res.body.error, 'customer_exists');\n+});",
+      "path": "test/customers.test.ts",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Test gap** | Major\n\n**No cross-tenant duplicate email test.** The new uniqueness tests only use one tenant, and `createCustomer` in helpers.ts now draws emails from a module-wide counter, so no fixture ever gives two tenants the same email. The global `customers (email)` index therefore passes the suite. Add a test where `newTenant('Globex')` creates a customer with the same email as acme and expects 201.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 5. The line number is from commit 22420c9; if the file has changed since, find the same code.\n\n[Major · missing test] No cross-tenant duplicate email test — test/customers.test.ts:74\nThe new uniqueness tests only use one tenant, and `createCustomer` in helpers.ts now draws emails from a module-wide counter, so no fixture ever gives two tenants the same email. The global `customers (email)` index therefore passes the suite. Add a test where `newTenant('Globex')` creates a customer with the same email as acme and expects 201.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:02Z",
+      "updated_at": "2026-10-18T17:45:02Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031609",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031609"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031609"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031609/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 74,
+      "original_line": 74,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 11,
+      "position": 11,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031611",
+      "pull_request_review_id": 5564117059,
+      "id": 4308031611,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdYew",
+      "diff_hunk": "@@ -0,0 +1,48 @@\n+name: Preview\n+\n+# Every pull request gets its own short-lived app so reviewers can click through the change.\n+on:\n+  pull_request_target:\n+    types: [opened, synchronize, reopened]",
+      "path": ".github/workflows/preview.yml",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Bug** | Minor\n\n**Preview apps are never destroyed.** The workflow only handles `opened`, `synchronize` and `reopened`, and nothing handles `closed`. The header calls these apps short-lived, but every PR leaves a Fly app and its `data` volume running after merge. Add a `closed` trigger, or a separate workflow, that runs `flyctl apps destroy ledgerline-pr-<n> --yes`.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 5. The line number is from commit 22420c9; if the file has changed since, find the same code.\n\n[Minor] Preview apps are never destroyed — .github/workflows/preview.yml:6\nThe workflow only handles `opened`, `synchronize` and `reopened`, and nothing handles `closed`. The header calls these apps short-lived, but every PR leaves a Fly app and its `data` volume running after merge. Add a `closed` trigger, or a separate workflow, that runs `flyctl apps destroy ledgerline-pr- --yes`.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:02Z",
+      "updated_at": "2026-10-18T17:45:02Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031611",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031611"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308031611"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308031611/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 6,
+      "original_line": 6,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 6,
+      "position": 6,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046365",
+      "pull_request_review_id": 5564132042,
+      "id": 4308046365,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeSHQ",
+      "diff_hunk": "@@ -0,0 +1,21 @@\n+FROM node:24-slim\n+\n+WORKDIR /app\n+\n+COPY package.json package-lock.json ./\n+RUN npm ci --omit=dev\n+\n+COPY . .",
+      "path": "Dockerfile",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Thanks. Anything else in this Dockerfile worth fixing?",
+      "created_at": "2026-10-18T17:49:29Z",
+      "updated_at": "2026-10-18T17:49:29Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308046365",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046365"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308046365"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046365/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 8,
+      "original_line": 8,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308031607,
+      "author_association": "OWNER",
+      "original_position": 8,
+      "position": 8,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046850",
+      "pull_request_review_id": 5564132510,
+      "id": 4308046850,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeUAg",
+      "diff_hunk": "@@ -0,0 +1,21 @@\n+FROM node:24-slim\n+\n+WORKDIR /app\n+\n+COPY package.json package-lock.json ./\n+RUN npm ci --omit=dev\n+\n+COPY . .",
+      "path": "Dockerfile",
+      "commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "original_commit_id": "22420c977226028961fbda238da59f409bae32f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "A couple of things: running as root is a minor hardening gap — add a non-root user and USER directive. Also \"node src/server.ts\" implies running TypeScript directly; make sure node 24's type-stripping actually covers your syntax, otherwise build/compile a dist and run that instead. Not urgent, but worth a look once the .dockerignore fix lands.",
+      "created_at": "2026-10-18T17:49:37Z",
+      "updated_at": "2026-10-18T17:49:37Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308046850",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046850"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/5#discussion_r4308046850"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046850/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 8,
+      "original_line": 8,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308031607,
+      "author_association": "NONE",
+      "original_position": 8,
+      "position": 8,
+      "subject_type": "line"
+    }
+  ],
+  "check_runs": [
+    {
+      "id": 117744184531,
+      "name": "Codzee review",
+      "node_id": "CR_kwDOVOodxs8AAAAbahms0w",
+      "head_sha": "22420c977226028961fbda238da59f409bae32f4",
+      "external_id": "",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744184531",
+      "html_url": "https://github.com/GauravChopada/ledgerline/runs/117744184531",
+      "details_url": "https://github.com/GauravChopada/ledgerline/pull/5#issuecomment-6253089243",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-18T17:43:41Z",
+      "completed_at": "2026-10-18T17:45:12Z",
+      "output": {
+        "title": "⛔ 2 critical findings open · 5 findings · 2 critical, 2 major",
+        "summary": "Adds containerized deployment support (Dockerfile, fly.toml, and a GitHub Actions workflow that deploys a per-PR preview app on Fly.io) along with a migration and code change enforcing unique, lowercase/trimmed customer emails: a new unique index migration, email normalization in the customer schema, a helper that turns SQLite unique-constraint violations into a 409 HTTP error on create/update, and corresponding tests. Also updates README deployment docs/roadmap and adjusts the test helper to generate unique emails by default.",
+        "text": null,
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744184531/annotations"
+      },
+      "check_suite": {
+        "id": 106093646887
+      },
+      "app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+          "id": 4911326570,
+          "number": 5,
+          "head": {
+            "ref": "chore/docker-and-preview-deploys",
+            "sha": "22420c977226028961fbda238da59f409bae32f4",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 117744180428,
+      "name": "test",
+      "node_id": "CR_kwDOVOodxs8AAAAbahmczA",
+      "head_sha": "22420c977226028961fbda238da59f409bae32f4",
+      "external_id": "d41e4841-17bd-558e-aeac-0e9c2a823275",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744180428",
+      "html_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150908486/job/117744180428",
+      "details_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150908486/job/117744180428",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:43Z",
+      "completed_at": "2026-10-18T17:43:53Z",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744180428/annotations"
+      },
+      "check_suite": {
+        "id": 106093641447
+      },
+      "app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/5",
+          "id": 4911326570,
+          "number": 5,
+          "head": {
+            "ref": "chore/docker-and-preview-deploys",
+            "sha": "22420c977226028961fbda238da59f409bae32f4",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reactions": [],
+  "captured_at": "2026-10-18T18:00:03Z"
+}

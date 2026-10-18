@@ -1,0 +1,877 @@
+{
+  "pr": {
+    "createdAt": "2026-10-18T17:43:35Z",
+    "headRefName": "perf/reports-and-invoice-lists",
+    "headRefOid": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+    "labels": [
+      {
+        "id": "LA_kwDOVOodxs8AAAAC94NRmA",
+        "name": "size:M",
+        "description": "Changes about 30–99 reviewable lines (set by Codzee)",
+        "color": "7f7203"
+      }
+    ],
+    "number": 4,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "title": "Faster revenue report; embed customers in invoice lists"
+  },
+  "issue_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253084561",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#issuecomment-6253084561",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/4",
+      "id": 6253084561,
+      "node_id": "IC_kwDOVOodxs8AAAABdLZ_kQ",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:44:39Z",
+      "updated_at": "2026-10-18T17:44:39Z",
+      "body": "## Codzee Review — 🔶 Changes requested\n\n**3 major findings** to fix — they don't fail the check (merge gate: Critical).\n\n`3 major`\n\n| Status | Severity | Confidence | Finding | Where |\n|---|---|---|---|---|\n| ⏳ Open | 🔶 Major | Confirmed | Local-time getMonth misfiles payments near month ends | [`routes/reports.ts:34`](https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030079) |\n| ⏳ Open | 🔶 Major | Confirmed | Renamed customers keep showing old details | [`src/customer-cache.ts:13`](https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030081) |\n| ⏳ Open | 🔶 Major | Confirmed | Revenue rows reordered from month-first to currency-first | [`routes/reports.ts:40`](https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030085) |\n\n<sub>Confidence — Confirmed: checked against the code · Likely: not independently checked · Unconfirmed: worth a look · Edge case: real in the code, but cannot happen today</sub>\n\n⚠️ **Likely merge conflict** with [#3](https://github.com/GauravChopada/ledgerline/pull/3) — both edit the same lines of `src/routes/invoices.ts`.\n\n- **Reviewed up to:** [`9577c7b`](https://github.com/GauravChopada/ledgerline/pull/4/commits/9577c7b0d04010ebeb29ed365fa6ac335e44c584)\n- **Merge gate:** fails on Critical · [change](https://codzee.io/dashboard/settings/organization/review)\n- **Commands:** `@codzee review` reviews the PR again · `@codzee help` lists commands · reply on a Codzee comment to ask or explain why something is intended\n\n<!-- codzee:folded eyJ2IjoyLCJzaGEiOiI5NTc3YzdiMGQwNDAxMGViZWIyOWVkMzY1ZmE2YWMzMzVlNDRjNTg0IiwicmV2aWV3ZXJzIjoiKirwn5GlIFJldmlld2VyOioqIG5vbmUgc3VnZ2VzdGVkIOKAlCBubyBjb2xsYWJvcmF0b3Igb3RoZXIgdGhhbiB0aGUgYXV0aG9yIGhhcyB3cml0ZSBhY2Nlc3MgaGVyZS4gQXNrIGEgdGVhbW1hdGUgdG8gcmV2aWV3LiIsImZvbGRlZCI6W10sImZpeGVkIjpbXX0= -->",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253084561/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114500",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#issuecomment-6253114500",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/4",
+      "id": 6253114500,
+      "node_id": "IC_kwDOVOodxs8AAAABdLb0hA",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:47:31Z",
+      "updated_at": "2026-10-18T17:47:31Z",
+      "body": "@codzee is there any memory risk in src/customer-cache.ts for a long-running, multi-tenant server?",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114500/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 5564115487,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6WqHw",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Codzee left 3 comments below — overview in the summary comment.",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564115487",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564115487"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "submitted_at": "2026-10-18T17:44:34Z",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584"
+    },
+    {
+      "id": 5564131972,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XqhA",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?u=8a1002aefec7aa4bb064a08d2d1265931155c2d6&v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564131972",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564131972"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:27Z",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584"
+    },
+    {
+      "id": 5564132477,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XsfQ",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564132477",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#pullrequestreview-5564132477"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:36Z",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584"
+    }
+  ],
+  "review_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030079",
+      "pull_request_review_id": 5564115487,
+      "id": 4308030079,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdSfw",
+      "diff_hunk": "@@ -1,39 +1,47 @@\n import type { FastifyInstance } from 'fastify';\n import { z } from 'zod';\n import type { Deps } from '../app.ts';\n-import { all, get } from '../db.ts';\n+import { all } from '../db.ts';\n import { parse } from '../http.ts';\n \n const RevenueQuery = z.object({ year: z.coerce.number().int().min(2000).max(2100) });\n \n export type RevenueRow = { month: string; currency: string; total_cents: number };\n \n export function reportRoutes(app: FastifyInstance, { db }: Deps): void {\n-  // Cash received per calendar month (UTC) and currency.\n+  // Cash received per calendar month and currency. Every month of the year is present (zero when\n+  // nothing came in) so the dashboard chart can plot the response directly.\n   app.get('/reports/revenue', async (req) => {\n     const { year } = parse(RevenueQuery, req.query);\n     const from = `${year}-01-01T00:00:00.000Z`;\n     const to = `${year + 1}-01-01T00:00:00.000Z`;\n \n-    const payments = all<{ invoice_id: string; amount_cents: number; created_at: string }>(\n+    // One query instead of one invoice lookup per payment.\n+    const payments = all<{ amount_cents: number; created_at: string; currency: string }>(\n       db,\n-      'SELECT invoice_id, amount_cents, created_at FROM payments WHERE tenant_id = ? AND created_at >= ? AND created_at < ? ORDER BY created_at',\n+      `SELECT p.amount_cents, p.created_at, i.currency\n+         FROM payments p\n+         JOIN invoices i ON i.id = p.invoice_id\n+        WHERE p.tenant_id = ? AND p.created_at >= ? AND p.created_at < ?`,\n       req.tenantId,\n       from,\n       to,\n     );\n \n-    const totals = new Map<string, RevenueRow>();\n+    const byCurrency = new Map<string, number[]>();\n     for (const payment of payments) {\n-      const invoice = get<{ currency: string }>(db, 'SELECT currency FROM invoices WHERE id = ?', payment.invoice_id);\n-      if (!invoice) continue;\n-      const month = payment.created_at.slice(0, 7); // timestamps are stored as UTC ISO strings\n-      const key = `${month}:${invoice.currency}`;\n-      const row = totals.get(key) ?? { month, currency: invoice.currency, total_cents: 0 };\n-      row.total_cents += payment.amount_cents;\n-      totals.set(key, row);\n+      const months = byCurrency.get(payment.currency) ?? Array.from({ length: 12 }, () => 0);\n+      const month = new Date(payment.created_at).getMonth();",
+      "path": "src/routes/reports.ts",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "original_commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Local-time getMonth misfiles payments near month ends.** `new Date(payment.created_at).getMonth()` uses the server's local timezone, but `created_at` and the `from`/`to` bounds are UTC. On a non-UTC host, a payment at 2026-01-31T23:30Z lands in February (UTC+1) or Dec 31 2026T23:30Z lands in January. The old code sliced the UTC string.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 4. The line number is from commit 9577c7b; if the file has changed since, find the same code.\n\n[Major] Local-time getMonth misfiles payments near month ends — src/routes/reports.ts:34\n`new Date(payment.created_at).getMonth()` uses the server's local timezone, but `created_at` and the `from`/`to` bounds are UTC. On a non-UTC host, a payment at 2026-01-31T23:30Z lands in February (UTC+1) or Dec 31 2026T23:30Z lands in January. The old code sliced the UTC string.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:34Z",
+      "updated_at": "2026-10-18T17:44:34Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030079",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030079"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030079"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030079/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 34,
+      "original_line": 34,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 46,
+      "position": 46,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030081",
+      "pull_request_review_id": 5564115487,
+      "id": 4308030081,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdSgQ",
+      "diff_hunk": "@@ -0,0 +1,20 @@\n+import type { Db } from './db.ts';\n+import { type Customer, getCustomer } from './routes/customers.ts';\n+\n+export type CustomerSummary = Pick<Customer, 'id' | 'name' | 'email'>;\n+\n+// Customer details change rarely and are read on every invoice list, so keep them in memory\n+// instead of querying once per invoice.\n+const cache = new Map<string, CustomerSummary>();\n+\n+export function customerSummary(db: Db, tenantId: string, customerId: string): CustomerSummary | null {\n+  const key = `${tenantId}:${customerId}`;\n+  const cached = cache.get(key);\n+  if (cached) return cached;",
+      "path": "src/customer-cache.ts",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "original_commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Renamed customers keep showing old details.** customerSummary returns the cached entry with no expiry or invalidation, and PATCH /customers/:id in customers.ts never touches the cache. After a rename or email change, GET /invoices keeps returning the old name and email until the process restarts. Drop the cache and fetch the page's customers in one `WHERE id IN (...)` query.\n\n<sub>Same root cause also at: `src/customer-cache.ts:8`</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 4. The line number is from commit 9577c7b; if the file has changed since, find the same code.\n\n[Major] Renamed customers keep showing old details — src/customer-cache.ts:13\ncustomerSummary returns the cached entry with no expiry or invalidation, and PATCH /customers/:id in customers.ts never touches the cache. After a rename or email change, GET /invoices keeps returning the old name and email until the process restarts. Drop the cache and fetch the page's customers in one `WHERE id IN (...)` query.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:34Z",
+      "updated_at": "2026-10-18T17:44:34Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030081",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030081"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030081"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030081/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 13,
+      "original_line": 13,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 13,
+      "position": 13,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030085",
+      "pull_request_review_id": 5564115487,
+      "id": 4308030085,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdShQ",
+      "diff_hunk": "@@ -1,39 +1,47 @@\n import type { FastifyInstance } from 'fastify';\n import { z } from 'zod';\n import type { Deps } from '../app.ts';\n-import { all, get } from '../db.ts';\n+import { all } from '../db.ts';\n import { parse } from '../http.ts';\n \n const RevenueQuery = z.object({ year: z.coerce.number().int().min(2000).max(2100) });\n \n export type RevenueRow = { month: string; currency: string; total_cents: number };\n \n export function reportRoutes(app: FastifyInstance, { db }: Deps): void {\n-  // Cash received per calendar month (UTC) and currency.\n+  // Cash received per calendar month and currency. Every month of the year is present (zero when\n+  // nothing came in) so the dashboard chart can plot the response directly.\n   app.get('/reports/revenue', async (req) => {\n     const { year } = parse(RevenueQuery, req.query);\n     const from = `${year}-01-01T00:00:00.000Z`;\n     const to = `${year + 1}-01-01T00:00:00.000Z`;\n \n-    const payments = all<{ invoice_id: string; amount_cents: number; created_at: string }>(\n+    // One query instead of one invoice lookup per payment.\n+    const payments = all<{ amount_cents: number; created_at: string; currency: string }>(\n       db,\n-      'SELECT invoice_id, amount_cents, created_at FROM payments WHERE tenant_id = ? AND created_at >= ? AND created_at < ? ORDER BY created_at',\n+      `SELECT p.amount_cents, p.created_at, i.currency\n+         FROM payments p\n+         JOIN invoices i ON i.id = p.invoice_id\n+        WHERE p.tenant_id = ? AND p.created_at >= ? AND p.created_at < ?`,\n       req.tenantId,\n       from,\n       to,\n     );\n \n-    const totals = new Map<string, RevenueRow>();\n+    const byCurrency = new Map<string, number[]>();\n     for (const payment of payments) {\n-      const invoice = get<{ currency: string }>(db, 'SELECT currency FROM invoices WHERE id = ?', payment.invoice_id);\n-      if (!invoice) continue;\n-      const month = payment.created_at.slice(0, 7); // timestamps are stored as UTC ISO strings\n-      const key = `${month}:${invoice.currency}`;\n-      const row = totals.get(key) ?? { month, currency: invoice.currency, total_cents: 0 };\n-      row.total_cents += payment.amount_cents;\n-      totals.set(key, row);\n+      const months = byCurrency.get(payment.currency) ?? Array.from({ length: 12 }, () => 0);\n+      const month = new Date(payment.created_at).getMonth();\n+      months[month] = (months[month] ?? 0) + payment.amount_cents;\n+      byCurrency.set(payment.currency, months);\n     }\n \n-    return { year, rows: [...totals.values()] };\n+    const rows: RevenueRow[] = [];\n+    for (const [currency, months] of [...byCurrency].sort(([a], [b]) => a.localeCompare(b))) {",
+      "path": "src/routes/reports.ts",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "original_commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Revenue rows reordered from month-first to currency-first.** The response is now sorted by currency and then month. Before, rows came in chronological order (Jan USD, Jan EUR, Feb USD). A client reading rows as a time series breaks, and the description does not mention the reorder. A currency with no payments in the year is also missing, so an empty year returns `rows: []` and the chart still can't plot directly.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 4. The line number is from commit 9577c7b; if the file has changed since, find the same code.\n\n[Major] Revenue rows reordered from month-first to currency-first — src/routes/reports.ts:40\nThe response is now sorted by currency and then month. Before, rows came in chronological order (Jan USD, Jan EUR, Feb USD). A client reading rows as a time series breaks, and the description does not mention the reorder. A currency with no payments in the year is also missing, so an empty year returns `rows: []` and the chart still can't plot directly.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:34Z",
+      "updated_at": "2026-10-18T17:44:34Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030085",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030085"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308030085"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308030085/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 40,
+      "original_line": 40,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 53,
+      "position": 53,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046296",
+      "pull_request_review_id": 5564131972,
+      "id": 4308046296,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeR2A",
+      "diff_hunk": "@@ -0,0 +1,20 @@\n+import type { Db } from './db.ts';\n+import { type Customer, getCustomer } from './routes/customers.ts';\n+\n+export type CustomerSummary = Pick<Customer, 'id' | 'name' | 'email'>;\n+\n+// Customer details change rarely and are read on every invoice list, so keep them in memory\n+// instead of querying once per invoice.\n+const cache = new Map<string, CustomerSummary>();\n+\n+export function customerSummary(db: Db, tenantId: string, customerId: string): CustomerSummary | null {\n+  const key = `${tenantId}:${customerId}`;\n+  const cached = cache.get(key);\n+  if (cached) return cached;",
+      "path": "src/customer-cache.ts",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "original_commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Separate from staleness: is there any memory risk in this cache for a long-running, multi-tenant server?",
+      "created_at": "2026-10-18T17:49:27Z",
+      "updated_at": "2026-10-18T17:49:27Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308046296",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046296"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308046296"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046296/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 13,
+      "original_line": 13,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308030081,
+      "author_association": "OWNER",
+      "original_position": 13,
+      "position": 13,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046817",
+      "pull_request_review_id": 5564132477,
+      "id": 4308046817,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeT4Q",
+      "diff_hunk": "@@ -0,0 +1,20 @@\n+import type { Db } from './db.ts';\n+import { type Customer, getCustomer } from './routes/customers.ts';\n+\n+export type CustomerSummary = Pick<Customer, 'id' | 'name' | 'email'>;\n+\n+// Customer details change rarely and are read on every invoice list, so keep them in memory\n+// instead of querying once per invoice.\n+const cache = new Map<string, CustomerSummary>();\n+\n+export function customerSummary(db: Db, tenantId: string, customerId: string): CustomerSummary | null {\n+  const key = `${tenantId}:${customerId}`;\n+  const cached = cache.get(key);\n+  if (cached) return cached;",
+      "path": "src/customer-cache.ts",
+      "commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "original_commit_id": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Yes — the Map never evicts entries, so in a long-running multi-tenant process it grows unbounded with every distinct tenantId:customerId pair ever looked up, which is an unbounded memory leak on top of the staleness issue. That's another reason to drop the cache in favor of the batched query.",
+      "created_at": "2026-10-18T17:49:36Z",
+      "updated_at": "2026-10-18T17:49:36Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308046817",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046817"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/4#discussion_r4308046817"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046817/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 13,
+      "original_line": 13,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308030081,
+      "author_association": "NONE",
+      "original_position": 13,
+      "position": 13,
+      "subject_type": "line"
+    }
+  ],
+  "check_runs": [
+    {
+      "id": 117744175088,
+      "name": "Codzee review",
+      "node_id": "CR_kwDOVOodxs8AAAAbahmH8A",
+      "head_sha": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "external_id": "",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744175088",
+      "html_url": "https://github.com/GauravChopada/ledgerline/runs/117744175088",
+      "details_url": "https://github.com/GauravChopada/ledgerline/pull/4#issuecomment-6253084561",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:39Z",
+      "completed_at": "2026-10-18T17:44:44Z",
+      "output": {
+        "title": "3 findings · 3 major · not blocking (merge gate: Critical)",
+        "summary": "Adds an in-memory customer-cache module to embed customer summaries (id/name/email) into the /invoices list response, and reworks /reports/revenue to join payments with invoices in a single query, grouping by currency and emitting all 12 months per currency instead of only months with activity. Includes tests for the new invoice customer embedding and the revenue report's full-year output.",
+        "text": null,
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744175088/annotations"
+      },
+      "check_suite": {
+        "id": 106093638595
+      },
+      "app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+          "id": 4911326289,
+          "number": 4,
+          "head": {
+            "ref": "perf/reports-and-invoice-lists",
+            "sha": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 117744171550,
+      "name": "test",
+      "node_id": "CR_kwDOVOodxs8AAAAbahl6Hg",
+      "head_sha": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+      "external_id": "5cfca225-d978-5eb0-8d96-012ea2a06d98",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744171550",
+      "html_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150905448/job/117744171550",
+      "details_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150905448/job/117744171550",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:40Z",
+      "completed_at": "2026-10-18T17:43:49Z",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744171550/annotations"
+      },
+      "check_suite": {
+        "id": 106093633577
+      },
+      "app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/4",
+          "id": 4911326289,
+          "number": 4,
+          "head": {
+            "ref": "perf/reports-and-invoice-lists",
+            "sha": "9577c7b0d04010ebeb29ed365fa6ac335e44c584",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reactions": [],
+  "captured_at": "2026-10-18T17:59:58Z"
+}

@@ -1,0 +1,831 @@
+{
+  "pr": {
+    "createdAt": "2026-10-18T17:43:32Z",
+    "headRefName": "refactor/repository-layer",
+    "headRefOid": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+    "labels": [
+      {
+        "id": "LA_kwDOVOodxs8AAAAC94MnKQ",
+        "name": "size:L",
+        "description": "Changes about 100–499 reviewable lines (set by Codzee)",
+        "color": "a14c05"
+      }
+    ],
+    "number": 3,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "title": "Move data access into a repository layer"
+  },
+  "issue_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253082272",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#issuecomment-6253082272",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/3",
+      "id": 6253082272,
+      "node_id": "IC_kwDOVOodxs8AAAABdLZ2oA",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:44:26Z",
+      "updated_at": "2026-10-18T17:44:26Z",
+      "body": "## Codzee Review — ⛔ Blocked\n\n**1 critical finding** must be fixed before merge.\n\n`1 critical` · `2 major` · `1 nice to have` · `1 of 4 is a test gap`\n\n| Status | Severity | Confidence | Finding | Where |\n|---|---|---|---|---|\n| ⏳ Open | 🔺 Critical | Confirmed | Cursor drops rows sharing a timestamp | [`repo/paginate.ts:34`](https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029175) |\n| ⏳ Open | 🔶 Major | Confirmed | Malformed cursor now returns empty 200 | [`repo/paginate.ts:33`](https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029182) |\n| ⏳ Open | 🔶 Major | Confirmed | Void invoices silently hidden by default | [`repo/invoices.ts:33`](https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029189) |\n\n<sub>Confidence — Confirmed: checked against the code · Likely: not independently checked · Unconfirmed: worth a look · Edge case: real in the code, but cannot happen today</sub>\n\n<details><summary>💡 <b>Nice to have</b> — 1 smaller suggestion, not blocking</summary>\n\n**1. 🧪 Test gap: Pagination test cannot detect timestamp ties** · [`test/customers.test.ts:35`](https://github.com/GauravChopada/ledgerline/blob/d0dbe945542f63ecf847625b9d29aa20eff8a1f4/test/customers.test.ts#L35)\n\nThe 'paginates customers newest first' test runs on the helper clock, which advances one second per read, so every customer gets a distinct created_at.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, on branch `refactor/repository-layer`. The line number is from commit d0dbe94; if the file has changed since, find the same code.\n\n[Nice to have · missing test] Pagination test cannot detect timestamp ties — test/customers.test.ts:35\nThe 'paginates customers newest first' test runs on the helper clock, which advances one second per read, so every customer gets a distinct created_at. It can never exercise the case where rows share a created_at across a page boundary, which is where paginate()'s `created_at < ?` filter drops rows. Add a test that sets identical timestamps (a fixed `now`, or inserting rows directly) and walks the pages.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>\n\n</details>\n\n⚠️ **Likely merge conflict** with [#5](https://github.com/GauravChopada/ledgerline/pull/5), [#4](https://github.com/GauravChopada/ledgerline/pull/4), [#1](https://github.com/GauravChopada/ledgerline/pull/1) — both edit the same lines of `src/routes/customers.ts`, `src/routes/invoices.ts`, `src/routes/payments.ts`.\n\n- **Reviewed up to:** [`d0dbe94`](https://github.com/GauravChopada/ledgerline/pull/3/commits/d0dbe945542f63ecf847625b9d29aa20eff8a1f4)\n- **Merge gate:** fails on Critical · [change](https://codzee.io/dashboard/settings/organization/review)\n- **Commands:** `@codzee review` reviews the PR again · `@codzee help` lists commands · reply on a Codzee comment to ask or explain why something is intended\n\n<!-- codzee:folded eyJ2IjoyLCJzaGEiOiJkMGRiZTk0NTU0MmY2M2VjZjg0NzYyNWI5ZDI5YWEyMGVmZjhhMWY0IiwicmV2aWV3ZXJzIjoiKirwn5GlIFJldmlld2VyOioqIG5vbmUgc3VnZ2VzdGVkIOKAlCBubyBjb2xsYWJvcmF0b3Igb3RoZXIgdGhhbiB0aGUgYXV0aG9yIGhhcyB3cml0ZSBhY2Nlc3MgaGVyZS4gQXNrIGEgdGVhbW1hdGUgdG8gcmV2aWV3LiIsImZvbGRlZCI6W3siZmlsZSI6InRlc3QvY3VzdG9tZXJzLnRlc3QudHMiLCJsaW5lIjozNSwiYm9keSI6IioqUGFnaW5hdGlvbiB0ZXN0IGNhbm5vdCBkZXRlY3QgdGltZXN0YW1wIHRpZXMuKiogVGhlICdwYWdpbmF0ZXMgY3VzdG9tZXJzIG5ld2VzdCBmaXJzdCcgdGVzdCBydW5zIG9uIHRoZSBoZWxwZXIgY2xvY2ssIHdoaWNoIGFkdmFuY2VzIG9uZSBzZWNvbmQgcGVyIHJlYWQsIHNvIGV2ZXJ5IGN1c3RvbWVyIGdldHMgYSBkaXN0aW5jdCBjcmVhdGVkX2F0LiBJdCBjYW4gbmV2ZXIgZXhlcmNpc2UgdGhlIGNhc2Ugd2hlcmUgcm93cyBzaGFyZSBhIGNyZWF0ZWRfYXQgYWNyb3NzIGEgcGFnZSBib3VuZGFyeSwgd2hpY2ggaXMgd2hlcmUgcGFnaW5hdGUoKSdzIGBjcmVhdGVkX2F0IDwgP2AgZmlsdGVyIGRyb3BzIHJvd3MuIEFkZCBhIHRlc3QgdGhhdCBzZXRzIGlkZW50aWNhbCB0aW1lc3RhbXBzIChhIGZpeGVkIGBub3dgLCBvciBpbnNlcnRpbmcgcm93cyBkaXJlY3RseSkgYW5kIHdhbGtzIHRoZSBwYWdlcy4iLCJjYXRlZ29yeSI6ImJ1ZyIsInNldmVyaXR5IjoibWlub3IiLCJraW5kIjoidGVzdF9nYXAifV0sImZpeGVkIjpbXX0= -->",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253082272/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 5564114576,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6WmkA",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Codzee left 3 comments below — 1 more finding in the summary comment.",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564114576",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564114576"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "submitted_at": "2026-10-18T17:44:20Z",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4"
+    },
+    {
+      "id": 5564131907,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XqQw",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?u=8a1002aefec7aa4bb064a08d2d1265931155c2d6&v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564131907",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564131907"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:26Z",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4"
+    },
+    {
+      "id": 5564132435,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XsUw",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564132435",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#pullrequestreview-5564132435"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:36Z",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4"
+    }
+  ],
+  "review_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029175",
+      "pull_request_review_id": 5564114576,
+      "id": 4308029175,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdO9w",
+      "diff_hunk": "@@ -0,0 +1,54 @@\n+import type { SQLInputValue } from 'node:sqlite';\n+import { type Db, all } from '../db.ts';\n+import { type Cursor, type Page, decodeCursor, toPage } from '../pagination.ts';\n+\n+export type Filter = { sql: string; params: SQLInputValue[] };\n+\n+export const eq = (column: string, value: SQLInputValue): Filter => ({ sql: `${column} = ?`, params: [value] });\n+\n+export const oneOf = (column: string, values: readonly SQLInputValue[]): Filter => ({\n+  sql: `${column} IN (${values.map(() => '?').join(', ')})`,\n+  params: [...values],\n+});\n+\n+export type PageRequest = { cursor?: string; limit: number };\n+\n+/**\n+ * Keyset pagination shared by every list endpoint: newest first, `limit` rows per page.\n+ * `table` and `columns` are fixed identifiers supplied by the repositories, never request input.\n+ */\n+export function paginate<T extends { created_at: string; id: string }>(\n+  db: Db,\n+  table: string,\n+  columns: string,\n+  filters: Filter[],\n+  page: PageRequest,\n+): Page<T> {\n+  const clauses = filters.map((f) => f.sql);\n+  const params = filters.flatMap((f) => f.params);\n+\n+  if (page.cursor) {\n+    const cursor = tryDecodeCursor(page.cursor);\n+    // A stale or truncated cursor (old app builds, hand-edited URLs) ends the list instead of erroring.\n+    if (!cursor) return { items: [], next_cursor: null };\n+    clauses.push('created_at < ?');",
+      "path": "src/repo/paginate.ts",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "original_commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔺 **Bug** | Critical\n\n**Cursor drops rows sharing a timestamp.** paginate() filters with `created_at < ?` only, but orders by `created_at DESC, id DESC` and the cursor carries the id. Rows with the same created_at as the last item are skipped on the next page. The old code used `(created_at, id) < (?, ?)`. With 3 rows at one millisecond and limit=2, the third row never appears. Restore the tuple comparison.\n\n<sub>Same root cause also at: `src/routes/customers.ts:25`, `src/repo/payments.ts:16`, `src/repo/customers.ts:21`</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 3. The line number is from commit d0dbe94; if the file has changed since, find the same code.\n\n[Critical] Cursor drops rows sharing a timestamp — src/repo/paginate.ts:34\npaginate() filters with `created_at < ?` only, but orders by `created_at DESC, id DESC` and the cursor carries the id. Rows with the same created_at as the last item are skipped on the next page. The old code used `(created_at, id) < (?, ?)`. With 3 rows at one millisecond and limit=2, the third row never appears. Restore the tuple comparison.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:20Z",
+      "updated_at": "2026-10-18T17:44:21Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029175",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029175"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029175"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029175/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 34,
+      "original_line": 34,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 34,
+      "position": 34,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029182",
+      "pull_request_review_id": 5564114576,
+      "id": 4308029182,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdO_g",
+      "diff_hunk": "@@ -0,0 +1,54 @@\n+import type { SQLInputValue } from 'node:sqlite';\n+import { type Db, all } from '../db.ts';\n+import { type Cursor, type Page, decodeCursor, toPage } from '../pagination.ts';\n+\n+export type Filter = { sql: string; params: SQLInputValue[] };\n+\n+export const eq = (column: string, value: SQLInputValue): Filter => ({ sql: `${column} = ?`, params: [value] });\n+\n+export const oneOf = (column: string, values: readonly SQLInputValue[]): Filter => ({\n+  sql: `${column} IN (${values.map(() => '?').join(', ')})`,\n+  params: [...values],\n+});\n+\n+export type PageRequest = { cursor?: string; limit: number };\n+\n+/**\n+ * Keyset pagination shared by every list endpoint: newest first, `limit` rows per page.\n+ * `table` and `columns` are fixed identifiers supplied by the repositories, never request input.\n+ */\n+export function paginate<T extends { created_at: string; id: string }>(\n+  db: Db,\n+  table: string,\n+  columns: string,\n+  filters: Filter[],\n+  page: PageRequest,\n+): Page<T> {\n+  const clauses = filters.map((f) => f.sql);\n+  const params = filters.flatMap((f) => f.params);\n+\n+  if (page.cursor) {\n+    const cursor = tryDecodeCursor(page.cursor);\n+    // A stale or truncated cursor (old app builds, hand-edited URLs) ends the list instead of erroring.\n+    if (!cursor) return { items: [], next_cursor: null };",
+      "path": "src/repo/paginate.ts",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "original_commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Malformed cursor now returns empty 200.** paginate() swallows the 400 `invalid_cursor` from decodeCursor and returns `{items: [], next_cursor: null}`. The PR claims no HTTP API change, but clients that got 400 now get 200 with an empty list. A client holding a bad cursor sees the list silently end and reads that as no more data. The test was rewritten to bless this. Let the HttpError propagate and restore the original test.\n\n<sub>Test to extend: `test/customers.test.ts:54` — add the case this comment describes</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 3. The line number is from commit d0dbe94; if the file has changed since, find the same code.\n\n[Major] Malformed cursor now returns empty 200 — src/repo/paginate.ts:33\npaginate() swallows the 400 `invalid_cursor` from decodeCursor and returns `{items: [], next_cursor: null}`. The PR claims no HTTP API change, but clients that got 400 now get 200 with an empty list. A client holding a bad cursor sees the list silently end and reads that as no more data. The test was rewritten to bless this. Let the HttpError propagate and restore the original test.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:20Z",
+      "updated_at": "2026-10-18T17:44:21Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029182",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029182"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029182"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029182/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 33,
+      "original_line": 33,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 33,
+      "position": 33,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029189",
+      "pull_request_review_id": 5564114576,
+      "id": 4308029189,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdPBQ",
+      "diff_hunk": "@@ -0,0 +1,61 @@\n+import { type Db, all, get } from '../db.ts';\n+import type { Page } from '../pagination.ts';\n+import { type Filter, type PageRequest, eq, oneOf, paginate } from './paginate.ts';\n+\n+export const INVOICE_STATUSES = ['draft', 'open', 'paid', 'void'] as const;\n+export type InvoiceStatus = (typeof INVOICE_STATUSES)[number];\n+\n+export type Invoice = {\n+  id: string;\n+  customer_id: string;\n+  number: string;\n+  status: InvoiceStatus;\n+  currency: string;\n+  total_cents: number;\n+  amount_paid_cents: number;\n+  due_at: string | null;\n+  issued_at: string | null;\n+  created_at: string;\n+};\n+\n+export type InvoiceLine = {\n+  id: string;\n+  position: number;\n+  description: string;\n+  quantity: number;\n+  unit_amount_cents: number;\n+};\n+\n+export const INVOICE_COLUMNS =\n+  'id, customer_id, number, status, currency, total_cents, amount_paid_cents, due_at, issued_at, created_at';\n+\n+// Voided invoices are almost never what someone listing invoices is looking for.\n+const LISTED_BY_DEFAULT: readonly InvoiceStatus[] = ['draft', 'open', 'paid'];",
+      "path": "src/repo/invoices.ts",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "original_commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🔶 **Bug** | Major\n\n**Void invoices silently hidden by default.** LISTED_BY_DEFAULT omits 'void', so GET /invoices without status no longer returns voided invoices. The old doc said \"Without `status`, invoices in every status are returned\". The customer statement view in routes/customers.ts, which comments \"whatever its status\", also loses voided invoices, because it passes no status. This is not a pure refactor. Default to no status filter when status is undefined.\n\n<sub>Same root cause also at: `src/routes/customers.ts:48`</sub>\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 3. The line number is from commit d0dbe94; if the file has changed since, find the same code.\n\n[Major] Void invoices silently hidden by default — src/repo/invoices.ts:33\nLISTED_BY_DEFAULT omits 'void', so GET /invoices without status no longer returns voided invoices. The old doc said \"Without `status`, invoices in every status are returned\". The customer statement view in routes/customers.ts, which comments \"whatever its status\", also loses voided invoices, because it passes no status. This is not a pure refactor. Default to no status filter when status is undefined.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:44:20Z",
+      "updated_at": "2026-10-18T17:44:21Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029189",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029189"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308029189"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308029189/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 33,
+      "original_line": 33,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 33,
+      "position": 33,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046242",
+      "pull_request_review_id": 5564131907,
+      "id": 4308046242,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeRog",
+      "diff_hunk": "@@ -0,0 +1,54 @@\n+import type { SQLInputValue } from 'node:sqlite';\n+import { type Db, all } from '../db.ts';\n+import { type Cursor, type Page, decodeCursor, toPage } from '../pagination.ts';\n+\n+export type Filter = { sql: string; params: SQLInputValue[] };\n+\n+export const eq = (column: string, value: SQLInputValue): Filter => ({ sql: `${column} = ?`, params: [value] });\n+\n+export const oneOf = (column: string, values: readonly SQLInputValue[]): Filter => ({\n+  sql: `${column} IN (${values.map(() => '?').join(', ')})`,\n+  params: [...values],\n+});\n+\n+export type PageRequest = { cursor?: string; limit: number };\n+\n+/**\n+ * Keyset pagination shared by every list endpoint: newest first, `limit` rows per page.\n+ * `table` and `columns` are fixed identifiers supplied by the repositories, never request input.\n+ */\n+export function paginate<T extends { created_at: string; id: string }>(\n+  db: Db,\n+  table: string,\n+  columns: string,\n+  filters: Filter[],\n+  page: PageRequest,\n+): Page<T> {\n+  const clauses = filters.map((f) => f.sql);\n+  const params = filters.flatMap((f) => f.params);\n+\n+  if (page.cursor) {\n+    const cursor = tryDecodeCursor(page.cursor);\n+    // A stale or truncated cursor (old app builds, hand-edited URLs) ends the list instead of erroring.\n+    if (!cursor) return { items: [], next_cursor: null };\n+    clauses.push('created_at < ?');",
+      "path": "src/repo/paginate.ts",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "original_commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "created_at has millisecond precision, so two rows can't realistically share a timestamp. I think this is safe to resolve.",
+      "created_at": "2026-10-18T17:49:26Z",
+      "updated_at": "2026-10-18T17:49:26Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308046242",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046242"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308046242"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046242/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 34,
+      "original_line": 34,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308029175,
+      "author_association": "OWNER",
+      "original_position": 34,
+      "position": 34,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046766",
+      "pull_request_review_id": 5564132435,
+      "id": 4308046766,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeTrg",
+      "diff_hunk": "@@ -0,0 +1,54 @@\n+import type { SQLInputValue } from 'node:sqlite';\n+import { type Db, all } from '../db.ts';\n+import { type Cursor, type Page, decodeCursor, toPage } from '../pagination.ts';\n+\n+export type Filter = { sql: string; params: SQLInputValue[] };\n+\n+export const eq = (column: string, value: SQLInputValue): Filter => ({ sql: `${column} = ?`, params: [value] });\n+\n+export const oneOf = (column: string, values: readonly SQLInputValue[]): Filter => ({\n+  sql: `${column} IN (${values.map(() => '?').join(', ')})`,\n+  params: [...values],\n+});\n+\n+export type PageRequest = { cursor?: string; limit: number };\n+\n+/**\n+ * Keyset pagination shared by every list endpoint: newest first, `limit` rows per page.\n+ * `table` and `columns` are fixed identifiers supplied by the repositories, never request input.\n+ */\n+export function paginate<T extends { created_at: string; id: string }>(\n+  db: Db,\n+  table: string,\n+  columns: string,\n+  filters: Filter[],\n+  page: PageRequest,\n+): Page<T> {\n+  const clauses = filters.map((f) => f.sql);\n+  const params = filters.flatMap((f) => f.params);\n+\n+  if (page.cursor) {\n+    const cursor = tryDecodeCursor(page.cursor);\n+    // A stale or truncated cursor (old app builds, hand-edited URLs) ends the list instead of erroring.\n+    if (!cursor) return { items: [], next_cursor: null };\n+    clauses.push('created_at < ?');",
+      "path": "src/repo/paginate.ts",
+      "commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "original_commit_id": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Millisecond precision doesn't rule out collisions in practice — bulk inserts, seed scripts, or concurrent writers can easily produce multiple rows in the same millisecond, especially under load or in tests. The code still orders by `(created_at, id) DESC` but filters only on `created_at <`, so any tie at the cursor boundary silently drops rows. Please restore the tuple comparison `(created_at, id) < (?, ?)`.",
+      "created_at": "2026-10-18T17:49:36Z",
+      "updated_at": "2026-10-18T17:49:36Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308046766",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046766"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/3#discussion_r4308046766"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046766/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 34,
+      "original_line": 34,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308029175,
+      "author_association": "NONE",
+      "original_position": 34,
+      "position": 34,
+      "subject_type": "line"
+    }
+  ],
+  "check_runs": [
+    {
+      "id": 117744169947,
+      "name": "Codzee review",
+      "node_id": "CR_kwDOVOodxs8AAAAbahlz2w",
+      "head_sha": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "external_id": "",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744169947",
+      "html_url": "https://github.com/GauravChopada/ledgerline/runs/117744169947",
+      "details_url": "https://github.com/GauravChopada/ledgerline/pull/3#issuecomment-6253082272",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-18T17:43:37Z",
+      "completed_at": "2026-10-18T17:44:31Z",
+      "output": {
+        "title": "⛔ 1 critical finding open · 4 findings · 1 critical, 2 major",
+        "summary": "Refactors customers/invoices/payments route handlers by extracting their DB access logic into new repo/ modules (customers.ts, invoices.ts, payments.ts) plus a shared paginate.ts helper with filter builders (eq, oneOf) and keyset pagination, reducing duplication across route files. Also changes malformed-cursor handling in pagination to silently return an empty page instead of throwing a 400 error, updating the corresponding customers test.",
+        "text": null,
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744169947/annotations"
+      },
+      "check_suite": {
+        "id": 106093634151
+      },
+      "app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+          "id": 4911325977,
+          "number": 3,
+          "head": {
+            "ref": "refactor/repository-layer",
+            "sha": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 117744163768,
+      "name": "test",
+      "node_id": "CR_kwDOVOodxs8AAAAbahlbuA",
+      "head_sha": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+      "external_id": "38688951-ae38-5ced-8b5d-14fd3e6d545e",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744163768",
+      "html_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150902846/job/117744163768",
+      "details_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150902846/job/117744163768",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:38Z",
+      "completed_at": "2026-10-18T17:43:49Z",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744163768/annotations"
+      },
+      "check_suite": {
+        "id": 106093627014
+      },
+      "app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/3",
+          "id": 4911325977,
+          "number": 3,
+          "head": {
+            "ref": "refactor/repository-layer",
+            "sha": "d0dbe945542f63ecf847625b9d29aa20eff8a1f4",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reactions": [],
+  "captured_at": "2026-10-18T17:59:54Z"
+}

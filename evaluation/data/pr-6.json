@@ -1,0 +1,1019 @@
+{
+  "pr": {
+    "createdAt": "2026-10-18T17:43:39Z",
+    "headRefName": "feat/invoice-csv-export",
+    "headRefOid": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+    "labels": [
+      {
+        "id": "LA_kwDOVOodxs8AAAAC94MnKQ",
+        "name": "size:L",
+        "description": "Changes about 100–499 reviewable lines (set by Codzee)",
+        "color": "a14c05"
+      }
+    ],
+    "number": 6,
+    "reviewDecision": "",
+    "state": "OPEN",
+    "title": "CSV export for invoices"
+  },
+  "issue_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253092759",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#issuecomment-6253092759",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/6",
+      "id": 6253092759,
+      "node_id": "IC_kwDOVOodxs8AAAABdLaflw",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:45:27Z",
+      "updated_at": "2026-10-18T17:45:27Z",
+      "body": "## Codzee Review — 🔶 Changes requested\n\n**1 major finding** to fix — it doesn't fail the check (merge gate: Critical).\n\n`1 major` · `3 minor` · `3 of 4 are test gaps`\n\n| Status | Severity | Confidence | Finding | Where |\n|---|---|---|---|---|\n| ⏳ Open | 🔶 Major | Confirmed | Void invoices export a full amount_due | [`routes/exports.ts:74`](https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032693) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Shadowing test cannot fail | [`test/exports.test.ts:82`](https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032698) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Descending and due_at sorting untested | [`test/exports.test.ts:77`](https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032700) |\n| ⏳ Open | 🟡 Minor | Confirmed | 🧪 Test gap: Email formula neutralisation untested | [`test/exports.test.ts:58`](https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032701) |\n\n<sub>Confidence — Confirmed: checked against the code · Likely: not independently checked · Unconfirmed: worth a look · Edge case: real in the code, but cannot happen today</sub>\n\n⚠️ **Likely merge conflict** with [#2](https://github.com/GauravChopada/ledgerline/pull/2), [#1](https://github.com/GauravChopada/ledgerline/pull/1), [#5](https://github.com/GauravChopada/ledgerline/pull/5) — both edit the same lines of `src/app.ts`, `README.md`.\n\n- **Reviewed up to:** [`a29ef76`](https://github.com/GauravChopada/ledgerline/pull/6/commits/a29ef76bdbf26afc7487e00013191b052f8f2f3d)\n- **Merge gate:** fails on Critical · [change](https://codzee.io/dashboard/settings/organization/review)\n- **Commands:** `@codzee review` reviews the PR again · `@codzee help` lists commands · reply on a Codzee comment to ask or explain why something is intended\n\n<!-- codzee:folded eyJ2IjoyLCJzaGEiOiJhMjllZjc2YmRiZjI2YWZjNzQ4N2UwMDAxMzE5MWIwNTJmOGYyZjNkIiwicmV2aWV3ZXJzIjoiKirwn5GlIFJldmlld2VyOioqIG5vbmUgc3VnZ2VzdGVkIOKAlCBubyBjb2xsYWJvcmF0b3Igb3RoZXIgdGhhbiB0aGUgYXV0aG9yIGhhcyB3cml0ZSBhY2Nlc3MgaGVyZS4gQXNrIGEgdGVhbW1hdGUgdG8gcmV2aWV3LiIsImZvbGRlZCI6W10sImZpeGVkIjpbXX0= -->",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253092759/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253113806",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#issuecomment-6253113806",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/6",
+      "id": 6253113806,
+      "node_id": "IC_kwDOVOodxs8AAAABdLbxzg",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:47:27Z",
+      "updated_at": "2026-10-18T17:47:27Z",
+      "body": "@codzee help",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253113806/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114212",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#issuecomment-6253114212",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/6",
+      "id": 6253114212,
+      "node_id": "IC_kwDOVOodxs8AAAABdLbzZA",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:47:30Z",
+      "updated_at": "2026-10-18T17:47:30Z",
+      "body": "**Codzee commands** — comment on a pull request:\n\n- `@codzee review` — run a full review of the PR as it is now. Useful for PRs opened before Codzee was installed, or after a review that only shared an overview. It runs after a new push, or 30 minutes after the last review, up to 3 times per PR.\n- `@codzee help` — show this list.\n\nReply on any Codzee comment to ask a question or explain why something is intentional — Codzee answers, and resolves the thread when it agrees. Codzee reviews every push automatically and resolves its threads once the code is fixed.",
+      "author_association": "NONE",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114212/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "minimized": null
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114321",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#issuecomment-6253114321",
+      "issue_url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/6",
+      "id": 6253114321,
+      "node_id": "IC_kwDOVOodxs8AAAABdLbz0Q",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "created_at": "2026-10-18T17:47:30Z",
+      "updated_at": "2026-10-18T17:47:30Z",
+      "body": "@codzee isn't `ORDER BY i.${q.sort} ${q.order}` in src/routes/exports.ts a SQL injection risk?",
+      "author_association": "OWNER",
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/issues/comments/6253114321/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "performed_via_github_app": null,
+      "minimized": null
+    }
+  ],
+  "reviews": [
+    {
+      "id": 5564118193,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6W0sQ",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Codzee left 4 comments below — overview in the summary comment.",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564118193",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564118193"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "submitted_at": "2026-10-18T17:45:22Z",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d"
+    },
+    {
+      "id": 5564131836,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6Xp_A",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?u=8a1002aefec7aa4bb064a08d2d1265931155c2d6&v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564131836",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "author_association": "OWNER",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564131836"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:25Z",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d"
+    },
+    {
+      "id": 5564132141,
+      "node_id": "PRR_kwDOVOodxs8AAAABS6XrLQ",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "",
+      "state": "COMMENTED",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564132141",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "author_association": "NONE",
+      "_links": {
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#pullrequestreview-5564132141"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "submitted_at": "2026-10-18T17:49:31Z",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d"
+    }
+  ],
+  "review_comments": [
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032693",
+      "pull_request_review_id": 5564118193,
+      "id": 4308032693,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdctQ",
+      "diff_hunk": "@@ -0,0 +1,86 @@\n+import type { FastifyInstance } from 'fastify';\n+import type { SQLInputValue } from 'node:sqlite';\n+import { z } from 'zod';\n+import type { Deps } from '../app.ts';\n+import { csvRow, formatAmount, plainText } from '../csv.ts';\n+import { all } from '../db.ts';\n+import { parse } from '../http.ts';\n+import { INVOICE_STATUSES } from './invoices.ts';\n+\n+const ExportQuery = z.object({\n+  status: z.enum(INVOICE_STATUSES).optional(),\n+  sort: z.enum(['created_at', 'issued_at', 'due_at']).default('created_at'),\n+  order: z.enum(['asc', 'desc']).default('asc'),\n+});\n+\n+const HEADER = [\n+  'number',\n+  'status',\n+  'customer_name',\n+  'customer_email',\n+  'currency',\n+  'total',\n+  'amount_paid',\n+  'amount_due',\n+  'issued_at',\n+  'due_at',\n+] as const;\n+\n+type ExportRow = {\n+  number: string;\n+  status: string;\n+  customer_name: string;\n+  customer_email: string;\n+  currency: string;\n+  total_cents: number;\n+  amount_paid_cents: number;\n+  issued_at: string | null;\n+  due_at: string | null;\n+};\n+\n+export function exportRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+  // Built in memory: the largest tenant has a few thousand invoices.\n+  app.get('/invoices/export.csv', async (req, reply) => {\n+    const q = parse(ExportQuery, req.query);\n+    const where = ['i.tenant_id = ?'];\n+    const params: SQLInputValue[] = [req.tenantId];\n+    if (q.status) {\n+      where.push('i.status = ?');\n+      params.push(q.status);\n+    }\n+\n+    // `sort` and `order` are restricted to the enums above, so interpolating them is safe.\n+    const rows = all<ExportRow>(\n+      db,\n+      `SELECT i.number, i.status, c.name AS customer_name, c.email AS customer_email, i.currency,\n+              i.total_cents, i.amount_paid_cents, i.issued_at, i.due_at\n+         FROM invoices i\n+         JOIN customers c ON c.id = i.customer_id AND c.tenant_id = i.tenant_id\n+        WHERE ${where.join(' AND ')}\n+        ORDER BY i.${q.sort} ${q.order} NULLS LAST, i.id ${q.order}`,\n+      ...params,\n+    );\n+\n+    let csv = '﻿' + csvRow(HEADER); // BOM so Excel opens the file as UTF-8\n+    for (const row of rows) {\n+      csv += csvRow([\n+        row.number,\n+        row.status,\n+        plainText(row.customer_name),\n+        plainText(row.customer_email),\n+        row.currency,\n+        formatAmount(row.total_cents),\n+        formatAmount(row.amount_paid_cents),\n+        formatAmount(row.total_cents - row.amount_paid_cents),",
+      "path": "src/routes/exports.ts",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "original_commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "☑️ **Accepted as intended** — explained by @GauravChopada\n\n---\n\n🔶 **Bug** | Major\n\n**Void invoices export a full amount_due.** The `amount_due` column is `total_cents - amount_paid_cents` for every status, so a void invoice is exported as fully due. Voiding requires `amount_paid_cents` of 0, so a voided 1,500.00 invoice shows `amount_due` 1500.00. The export includes void rows by default, so an accountant summing that column overstates receivables. Voided invoices should export 0.00.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 6. The line number is from commit a29ef76; if the file has changed since, find the same code.\n\n[Major] Void invoices export a full amount_due — src/routes/exports.ts:74\nThe `amount_due` column is `total_cents - amount_paid_cents` for every status, so a void invoice is exported as fully due. Voiding requires `amount_paid_cents` of 0, so a voided 1,500.00 invoice shows `amount_due` 1500.00. The export includes void rows by default, so an accountant summing that column overstates receivables. Voided invoices should export 0.00.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:22Z",
+      "updated_at": "2026-10-18T17:49:32Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032693",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032693"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032693"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032693/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 74,
+      "original_line": 74,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 74,
+      "position": 74,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032698",
+      "pull_request_review_id": 5564118193,
+      "id": 4308032698,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdcug",
+      "diff_hunk": "@@ -0,0 +1,86 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { csvField, csvRow, formatAmount, plainText } from '../src/csv.ts';\n+import { createCustomer, createOpenInvoice, setup } from './helpers.ts';\n+\n+const lines = (body: string) => body.replace(/^﻿/, '').trimEnd().split('\\r\\n');\n+\n+test('csv fields are quoted only when needed', () => {\n+  assert.equal(csvField('plain'), 'plain');\n+  assert.equal(csvField('Smith, Jo'), '\"Smith, Jo\"');\n+  assert.equal(csvField('say \"hi\"'), '\"say \"\"hi\"\"\"');\n+  assert.equal(csvField('two\\nlines'), '\"two\\nlines\"');\n+  assert.equal(csvField('Acme;=1+1'), '\"Acme;=1+1\"', 'semicolon-separated locales');\n+  assert.equal(csvField('tab\\there'), '\"tab\\there\"');\n+  assert.equal(csvRow(['a', 'b,c']), 'a,\"b,c\"\\r\\n');\n+});\n+\n+test('formula-like text is neutralised', () => {\n+  for (const evil of ['=1+1', '+1', '-1', '@SUM(A1)', '\\tx', '\\rx']) assert.equal(plainText(evil), `'${evil}`);\n+  assert.equal(plainText('Ada = genius'), 'Ada = genius');\n+});\n+\n+test('amounts are formatted exactly from cents', () => {\n+  assert.equal(formatAmount(0), '0.00');\n+  assert.equal(formatAmount(5), '0.05');\n+  assert.equal(formatAmount(1999), '19.99');\n+  assert.equal(formatAmount(123456), '1234.56');\n+  assert.equal(formatAmount(Number.MAX_SAFE_INTEGER), '90071992547409.91');\n+  assert.throws(() => formatAmount(-1), RangeError);\n+  assert.throws(() => formatAmount(1.5), RangeError);\n+});\n+\n+test('exports the tenant’s invoices as CSV', async () => {\n+  const { acme, newTenant } = await setup();\n+  const globex = newTenant('Globex');\n+  const customer = await createCustomer(acme, 'Lovelace, \"Ada\"', 'ada@example.com');\n+  const invoice = await createOpenInvoice(acme, customer.id, 1234_56);\n+  await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 234_56, method: 'cash' } });\n+  await createOpenInvoice(globex, (await createCustomer(globex)).id);\n+\n+  const res = await acme.app.inject({ method: 'GET', url: '/invoices/export.csv', headers: { authorization: `Bearer ${acme.apiKey}` } });\n+  assert.equal(res.statusCode, 200);\n+  assert.equal(res.headers['content-type'], 'text/csv; charset=utf-8');\n+  assert.match(String(res.headers['content-disposition']), /^attachment; filename=\"invoices-\\d{4}-\\d{2}-\\d{2}\\.csv\"$/);\n+  assert.ok(res.body.startsWith('﻿'));\n+  assert.deepEqual(lines(res.body), [\n+    'number,status,customer_name,customer_email,currency,total,amount_paid,amount_due,issued_at,due_at',\n+    `INV-0001,open,\"Lovelace, \"\"Ada\"\"\",ada@example.com,USD,1234.56,234.56,1000.00,${invoice.issued_at},`,\n+  ]);\n+});\n+\n+test('customer names cannot inject spreadsheet formulas', async () => {\n+  const { acme } = await setup();\n+  const customer = await createCustomer(acme, '=HYPERLINK(\"https://evil.example\",\"Click\")', 'x@example.com');\n+  await createOpenInvoice(acme, customer.id);\n+  const res = await acme.app.inject({ method: 'GET', url: '/invoices/export.csv', headers: { authorization: `Bearer ${acme.apiKey}` } });\n+  assert.match(lines(res.body)[1] ?? '', /^INV-0001,open,\"'=HYPERLINK\\(\"\"https:\\/\\/evil\\.example\"\",\"\"Click\"\"\\)\",/);\n+});\n+\n+test('filters by status and sorts', async () => {\n+  const { acme } = await setup();\n+  const customer = await createCustomer(acme);\n+  await createOpenInvoice(acme, customer.id);\n+  await createOpenInvoice(acme, customer.id);\n+  await acme.request({\n+    method: 'POST',\n+    url: '/invoices',\n+    payload: { customer_id: customer.id, currency: 'USD', lines: [{ description: 'Draft', quantity: 1, unit_amount_cents: 100 }] },\n+  });\n+  const get = (qs: string) =>\n+    acme.app.inject({ method: 'GET', url: `/invoices/export.csv?${qs}`, headers: { authorization: `Bearer ${acme.apiKey}` } });\n+\n+  const open = lines((await get('status=open&order=desc')).body).slice(1).map((l) => l.split(',')[0]);\n+  assert.deepEqual(open, ['INV-0002', 'INV-0001']);\n+\n+  const byIssued = lines((await get('sort=issued_at')).body).slice(1).map((l) => l.split(',')[0]);\n+  assert.deepEqual(byIssued, ['INV-0001', 'INV-0002', 'INV-0003'], 'drafts have no issue date and sort last');\n+\n+  assert.equal((await get('sort=total_cents')).statusCode, 400);\n+});\n+\n+test('the export route does not shadow invoice lookups', async () => {",
+      "path": "test/exports.test.ts",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "original_commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Test gap** | Minor\n\n**Shadowing test cannot fail.** The 'export route does not shadow invoice lookups' test requests `GET /invoices/:id` for a real invoice, which succeeds whether or not `/invoices/export.csv` is registered. It checks the wrong direction. Shadowing would break `export.csv` itself (it would be read as an id and return 404), and the earlier export tests already cover that. Delete it, or assert `GET /invoices/export.csv` returns CSV, not a `not_found` JSON error.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 6. The line number is from commit a29ef76; if the file has changed since, find the same code.\n\n[Minor · missing test] Shadowing test cannot fail — test/exports.test.ts:82\nThe 'export route does not shadow invoice lookups' test requests `GET /invoices/:id` for a real invoice, which succeeds whether or not `/invoices/export.csv` is registered. It checks the wrong direction. Shadowing would break `export.csv` itself (it would be read as an id and return 404), and the earlier export tests already cover that. Delete it, or assert `GET /invoices/export.csv` returns CSV, not a `not_found` JSON error.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:22Z",
+      "updated_at": "2026-10-18T17:45:22Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032698",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032698"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032698"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032698/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 82,
+      "original_line": 82,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 82,
+      "position": 82,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032701",
+      "pull_request_review_id": 5564118193,
+      "id": 4308032701,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMdcvQ",
+      "diff_hunk": "@@ -0,0 +1,86 @@\n+import assert from 'node:assert/strict';\n+import { test } from 'node:test';\n+import { csvField, csvRow, formatAmount, plainText } from '../src/csv.ts';\n+import { createCustomer, createOpenInvoice, setup } from './helpers.ts';\n+\n+const lines = (body: string) => body.replace(/^﻿/, '').trimEnd().split('\\r\\n');\n+\n+test('csv fields are quoted only when needed', () => {\n+  assert.equal(csvField('plain'), 'plain');\n+  assert.equal(csvField('Smith, Jo'), '\"Smith, Jo\"');\n+  assert.equal(csvField('say \"hi\"'), '\"say \"\"hi\"\"\"');\n+  assert.equal(csvField('two\\nlines'), '\"two\\nlines\"');\n+  assert.equal(csvField('Acme;=1+1'), '\"Acme;=1+1\"', 'semicolon-separated locales');\n+  assert.equal(csvField('tab\\there'), '\"tab\\there\"');\n+  assert.equal(csvRow(['a', 'b,c']), 'a,\"b,c\"\\r\\n');\n+});\n+\n+test('formula-like text is neutralised', () => {\n+  for (const evil of ['=1+1', '+1', '-1', '@SUM(A1)', '\\tx', '\\rx']) assert.equal(plainText(evil), `'${evil}`);\n+  assert.equal(plainText('Ada = genius'), 'Ada = genius');\n+});\n+\n+test('amounts are formatted exactly from cents', () => {\n+  assert.equal(formatAmount(0), '0.00');\n+  assert.equal(formatAmount(5), '0.05');\n+  assert.equal(formatAmount(1999), '19.99');\n+  assert.equal(formatAmount(123456), '1234.56');\n+  assert.equal(formatAmount(Number.MAX_SAFE_INTEGER), '90071992547409.91');\n+  assert.throws(() => formatAmount(-1), RangeError);\n+  assert.throws(() => formatAmount(1.5), RangeError);\n+});\n+\n+test('exports the tenant’s invoices as CSV', async () => {\n+  const { acme, newTenant } = await setup();\n+  const globex = newTenant('Globex');\n+  const customer = await createCustomer(acme, 'Lovelace, \"Ada\"', 'ada@example.com');\n+  const invoice = await createOpenInvoice(acme, customer.id, 1234_56);\n+  await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 234_56, method: 'cash' } });\n+  await createOpenInvoice(globex, (await createCustomer(globex)).id);\n+\n+  const res = await acme.app.inject({ method: 'GET', url: '/invoices/export.csv', headers: { authorization: `Bearer ${acme.apiKey}` } });\n+  assert.equal(res.statusCode, 200);\n+  assert.equal(res.headers['content-type'], 'text/csv; charset=utf-8');\n+  assert.match(String(res.headers['content-disposition']), /^attachment; filename=\"invoices-\\d{4}-\\d{2}-\\d{2}\\.csv\"$/);\n+  assert.ok(res.body.startsWith('﻿'));\n+  assert.deepEqual(lines(res.body), [\n+    'number,status,customer_name,customer_email,currency,total,amount_paid,amount_due,issued_at,due_at',\n+    `INV-0001,open,\"Lovelace, \"\"Ada\"\"\",ada@example.com,USD,1234.56,234.56,1000.00,${invoice.issued_at},`,\n+  ]);\n+});\n+\n+test('customer names cannot inject spreadsheet formulas', async () => {\n+  const { acme } = await setup();\n+  const customer = await createCustomer(acme, '=HYPERLINK(\"https://evil.example\",\"Click\")', 'x@example.com');\n+  await createOpenInvoice(acme, customer.id);\n+  const res = await acme.app.inject({ method: 'GET', url: '/invoices/export.csv', headers: { authorization: `Bearer ${acme.apiKey}` } });\n+  assert.match(lines(res.body)[1] ?? '', /^INV-0001,open,\"'=HYPERLINK\\(\"\"https:\\/\\/evil\\.example\"\",\"\"Click\"\"\\)\",/);\n+});",
+      "path": "test/exports.test.ts",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "original_commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "🟡 **Test gap** | Minor\n\n**Email formula neutralisation untested.** The export applies `plainText` to `customer_email` as well as `customer_name`. The route-level injection test only uses a malicious name, so removing `plainText` from the email column would leave the suite green. Create a second customer with an email such as `+cmd@example.com` or `=1+1@x.test` and assert the exported cell starts with an apostrophe.\n\n<details><summary>🤖 Fix with AI</summary>\n\n```text\nFix this code review finding in GauravChopada/ledgerline, pull request 6. The line number is from commit a29ef76; if the file has changed since, find the same code.\n\n[Minor · missing test] Email formula neutralisation untested — test/exports.test.ts:58\nThe export applies `plainText` to `customer_email` as well as `customer_name`. The route-level injection test only uses a malicious name, so removing `plainText` from the email column would leave the suite green. Create a second customer with an email such as `+cmd@example.com` or `=1+1@x.test` and assert the exported cell starts with an apostrophe.\n\nRead the code at the location first and confirm the problem. Make the smallest change that fixes it, without changing unrelated code or existing behaviour. Add or update a test that would have caught it. If you think it is not a real problem, say why instead of changing the code.\n```\n\n</details>",
+      "created_at": "2026-10-18T17:45:22Z",
+      "updated_at": "2026-10-18T17:45:22Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032701",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032701"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308032701"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308032701/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 58,
+      "original_line": 58,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 58,
+      "position": 58,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046179",
+      "pull_request_review_id": 5564131836,
+      "id": 4308046179,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeRYw",
+      "diff_hunk": "@@ -0,0 +1,86 @@\n+import type { FastifyInstance } from 'fastify';\n+import type { SQLInputValue } from 'node:sqlite';\n+import { z } from 'zod';\n+import type { Deps } from '../app.ts';\n+import { csvRow, formatAmount, plainText } from '../csv.ts';\n+import { all } from '../db.ts';\n+import { parse } from '../http.ts';\n+import { INVOICE_STATUSES } from './invoices.ts';\n+\n+const ExportQuery = z.object({\n+  status: z.enum(INVOICE_STATUSES).optional(),\n+  sort: z.enum(['created_at', 'issued_at', 'due_at']).default('created_at'),\n+  order: z.enum(['asc', 'desc']).default('asc'),\n+});\n+\n+const HEADER = [\n+  'number',\n+  'status',\n+  'customer_name',\n+  'customer_email',\n+  'currency',\n+  'total',\n+  'amount_paid',\n+  'amount_due',\n+  'issued_at',\n+  'due_at',\n+] as const;\n+\n+type ExportRow = {\n+  number: string;\n+  status: string;\n+  customer_name: string;\n+  customer_email: string;\n+  currency: string;\n+  total_cents: number;\n+  amount_paid_cents: number;\n+  issued_at: string | null;\n+  due_at: string | null;\n+};\n+\n+export function exportRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+  // Built in memory: the largest tenant has a few thousand invoices.\n+  app.get('/invoices/export.csv', async (req, reply) => {\n+    const q = parse(ExportQuery, req.query);\n+    const where = ['i.tenant_id = ?'];\n+    const params: SQLInputValue[] = [req.tenantId];\n+    if (q.status) {\n+      where.push('i.status = ?');\n+      params.push(q.status);\n+    }\n+\n+    // `sort` and `order` are restricted to the enums above, so interpolating them is safe.\n+    const rows = all<ExportRow>(\n+      db,\n+      `SELECT i.number, i.status, c.name AS customer_name, c.email AS customer_email, i.currency,\n+              i.total_cents, i.amount_paid_cents, i.issued_at, i.due_at\n+         FROM invoices i\n+         JOIN customers c ON c.id = i.customer_id AND c.tenant_id = i.tenant_id\n+        WHERE ${where.join(' AND ')}\n+        ORDER BY i.${q.sort} ${q.order} NULLS LAST, i.id ${q.order}`,\n+      ...params,\n+    );\n+\n+    let csv = '﻿' + csvRow(HEADER); // BOM so Excel opens the file as UTF-8\n+    for (const row of rows) {\n+      csv += csvRow([\n+        row.number,\n+        row.status,\n+        plainText(row.customer_name),\n+        plainText(row.customer_email),\n+        row.currency,\n+        formatAmount(row.total_cents),\n+        formatAmount(row.amount_paid_cents),\n+        formatAmount(row.total_cents - row.amount_paid_cents),",
+      "path": "src/routes/exports.ts",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "original_commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "user": {
+        "login": "GauravChopada",
+        "id": 99756667,
+        "node_id": "U_kgDOBfIqew",
+        "avatar_url": "https://avatars.githubusercontent.com/u/99756667?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/GauravChopada",
+        "html_url": "https://github.com/GauravChopada",
+        "followers_url": "https://api.github.com/users/GauravChopada/followers",
+        "following_url": "https://api.github.com/users/GauravChopada/following{/other_user}",
+        "gists_url": "https://api.github.com/users/GauravChopada/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/GauravChopada/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/GauravChopada/subscriptions",
+        "organizations_url": "https://api.github.com/users/GauravChopada/orgs",
+        "repos_url": "https://api.github.com/users/GauravChopada/repos",
+        "events_url": "https://api.github.com/users/GauravChopada/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/GauravChopada/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "This is intended. Accountants asked to see the original amount due on void invoices so they know what was cancelled.",
+      "created_at": "2026-10-18T17:49:25Z",
+      "updated_at": "2026-10-18T17:49:25Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308046179",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046179"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308046179"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046179/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 74,
+      "original_line": 74,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308032693,
+      "author_association": "OWNER",
+      "original_position": 74,
+      "position": 74,
+      "subject_type": "line"
+    },
+    {
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046452",
+      "pull_request_review_id": 5564132141,
+      "id": 4308046452,
+      "node_id": "PRRC_kwDOVOodxs8AAAABAMeSdA",
+      "diff_hunk": "@@ -0,0 +1,86 @@\n+import type { FastifyInstance } from 'fastify';\n+import type { SQLInputValue } from 'node:sqlite';\n+import { z } from 'zod';\n+import type { Deps } from '../app.ts';\n+import { csvRow, formatAmount, plainText } from '../csv.ts';\n+import { all } from '../db.ts';\n+import { parse } from '../http.ts';\n+import { INVOICE_STATUSES } from './invoices.ts';\n+\n+const ExportQuery = z.object({\n+  status: z.enum(INVOICE_STATUSES).optional(),\n+  sort: z.enum(['created_at', 'issued_at', 'due_at']).default('created_at'),\n+  order: z.enum(['asc', 'desc']).default('asc'),\n+});\n+\n+const HEADER = [\n+  'number',\n+  'status',\n+  'customer_name',\n+  'customer_email',\n+  'currency',\n+  'total',\n+  'amount_paid',\n+  'amount_due',\n+  'issued_at',\n+  'due_at',\n+] as const;\n+\n+type ExportRow = {\n+  number: string;\n+  status: string;\n+  customer_name: string;\n+  customer_email: string;\n+  currency: string;\n+  total_cents: number;\n+  amount_paid_cents: number;\n+  issued_at: string | null;\n+  due_at: string | null;\n+};\n+\n+export function exportRoutes(app: FastifyInstance, { db, now }: Deps): void {\n+  // Built in memory: the largest tenant has a few thousand invoices.\n+  app.get('/invoices/export.csv', async (req, reply) => {\n+    const q = parse(ExportQuery, req.query);\n+    const where = ['i.tenant_id = ?'];\n+    const params: SQLInputValue[] = [req.tenantId];\n+    if (q.status) {\n+      where.push('i.status = ?');\n+      params.push(q.status);\n+    }\n+\n+    // `sort` and `order` are restricted to the enums above, so interpolating them is safe.\n+    const rows = all<ExportRow>(\n+      db,\n+      `SELECT i.number, i.status, c.name AS customer_name, c.email AS customer_email, i.currency,\n+              i.total_cents, i.amount_paid_cents, i.issued_at, i.due_at\n+         FROM invoices i\n+         JOIN customers c ON c.id = i.customer_id AND c.tenant_id = i.tenant_id\n+        WHERE ${where.join(' AND ')}\n+        ORDER BY i.${q.sort} ${q.order} NULLS LAST, i.id ${q.order}`,\n+      ...params,\n+    );\n+\n+    let csv = '﻿' + csvRow(HEADER); // BOM so Excel opens the file as UTF-8\n+    for (const row of rows) {\n+      csv += csvRow([\n+        row.number,\n+        row.status,\n+        plainText(row.customer_name),\n+        plainText(row.customer_email),\n+        row.currency,\n+        formatAmount(row.total_cents),\n+        formatAmount(row.amount_paid_cents),\n+        formatAmount(row.total_cents - row.amount_paid_cents),",
+      "path": "src/routes/exports.ts",
+      "commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "original_commit_id": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "user": {
+        "login": "codzee-app[bot]",
+        "id": 308323434,
+        "node_id": "BOT_kgDOEmCkag",
+        "avatar_url": "https://avatars.githubusercontent.com/in/4373398?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/codzee-app%5Bbot%5D",
+        "html_url": "https://github.com/apps/codzee-app",
+        "followers_url": "https://api.github.com/users/codzee-app%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/codzee-app%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/codzee-app%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/codzee-app%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/codzee-app%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/codzee-app%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/codzee-app%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/codzee-app%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "Fair enough — if accountants specifically want to see the original amount cancelled on void invoices, exporting total_cents - amount_paid_cents (= total_cents, since voiding requires zero paid) makes sense as intended behavior. Accepted.",
+      "created_at": "2026-10-18T17:49:30Z",
+      "updated_at": "2026-10-18T17:49:31Z",
+      "html_url": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308046452",
+      "pull_request_url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046452"
+        },
+        "html": {
+          "href": "https://github.com/GauravChopada/ledgerline/pull/6#discussion_r4308046452"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/comments/4308046452/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 74,
+      "original_line": 74,
+      "side": "RIGHT",
+      "in_reply_to_id": 4308032693,
+      "author_association": "NONE",
+      "original_position": 74,
+      "position": 74,
+      "subject_type": "line"
+    }
+  ],
+  "check_runs": [
+    {
+      "id": 117744192720,
+      "name": "Codzee review",
+      "node_id": "CR_kwDOVOodxs8AAAAbahnM0A",
+      "head_sha": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "external_id": "",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744192720",
+      "html_url": "https://github.com/GauravChopada/ledgerline/runs/117744192720",
+      "details_url": "https://github.com/GauravChopada/ledgerline/pull/6#issuecomment-6253092759",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:43Z",
+      "completed_at": "2026-10-18T17:45:33Z",
+      "output": {
+        "title": "4 findings · 1 major · not blocking (merge gate: Critical)",
+        "summary": "Adds a GET /invoices/export.csv endpoint (with route registration and CSV helper module) that streams a tenant's invoices as a CSV file for accountants, supporting optional status filtering and sort/order query params, plus tests for the CSV helpers and the new route.",
+        "text": null,
+        "annotations_count": 0,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744192720/annotations"
+      },
+      "check_suite": {
+        "id": 106093653781
+      },
+      "app": {
+        "id": 4373398,
+        "client_id": "Iv23li3yiIjoWxRMa9a2",
+        "slug": "codzee-app",
+        "node_id": "A_kwDOEk4Yys4AQruW",
+        "owner": {
+          "login": "codzee-ai",
+          "id": 307108042,
+          "node_id": "U_kgDOEk4Yyg",
+          "avatar_url": "https://avatars.githubusercontent.com/u/307108042?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/codzee-ai",
+          "html_url": "https://github.com/codzee-ai",
+          "followers_url": "https://api.github.com/users/codzee-ai/followers",
+          "following_url": "https://api.github.com/users/codzee-ai/following{/other_user}",
+          "gists_url": "https://api.github.com/users/codzee-ai/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/codzee-ai/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/codzee-ai/subscriptions",
+          "organizations_url": "https://api.github.com/users/codzee-ai/orgs",
+          "repos_url": "https://api.github.com/users/codzee-ai/repos",
+          "events_url": "https://api.github.com/users/codzee-ai/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/codzee-ai/received_events",
+          "type": "User",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "codzee-app",
+        "description": "",
+        "external_url": "https://www.codzee.io",
+        "html_url": "https://github.com/apps/codzee-app",
+        "created_at": "2026-07-23T09:26:51Z",
+        "updated_at": "2026-10-15T14:01:29Z",
+        "permissions": {
+          "actions": "read",
+          "checks": "write",
+          "contents": "write",
+          "issues": "write",
+          "members": "read",
+          "metadata": "read",
+          "pull_requests": "write",
+          "statuses": "write"
+        },
+        "events": [
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "pull_request_review_thread",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+          "id": 4911326893,
+          "number": 6,
+          "head": {
+            "ref": "feat/invoice-csv-export",
+            "sha": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 117744190049,
+      "name": "test",
+      "node_id": "CR_kwDOVOodxs8AAAAbahnCYQ",
+      "head_sha": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+      "external_id": "a46cc875-a8ed-5ba0-b2fb-374003af9d21",
+      "url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744190049",
+      "html_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150911666/job/117744190049",
+      "details_url": "https://github.com/GauravChopada/ledgerline/actions/runs/39150911666/job/117744190049",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-18T17:43:45Z",
+      "completed_at": "2026-10-18T17:43:54Z",
+      "output": {
+        "title": null,
+        "summary": null,
+        "text": null,
+        "annotations_count": 2,
+        "annotations_url": "https://api.github.com/repos/GauravChopada/ledgerline/check-runs/117744190049/annotations"
+      },
+      "check_suite": {
+        "id": 106093650064
+      },
+      "app": {
+        "id": 15368,
+        "client_id": "Iv1.05c79e9ad1f6bdfa",
+        "slug": "github-actions",
+        "node_id": "MDM6QXBwMTUzNjg=",
+        "owner": {
+          "login": "github",
+          "id": 9919,
+          "node_id": "MDEyOk9yZ2FuaXphdGlvbjk5MTk=",
+          "avatar_url": "https://avatars.githubusercontent.com/u/9919?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github",
+          "html_url": "https://github.com/github",
+          "followers_url": "https://api.github.com/users/github/followers",
+          "following_url": "https://api.github.com/users/github/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github/subscriptions",
+          "organizations_url": "https://api.github.com/users/github/orgs",
+          "repos_url": "https://api.github.com/users/github/repos",
+          "events_url": "https://api.github.com/users/github/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github/received_events",
+          "type": "Organization",
+          "user_view_type": "public",
+          "site_admin": false
+        },
+        "name": "GitHub Actions",
+        "description": "Automate your workflow from idea to production",
+        "external_url": "https://help.github.com/en/actions",
+        "html_url": "https://github.com/apps/github-actions",
+        "created_at": "2018-07-30T09:30:17Z",
+        "updated_at": "2026-06-18T16:17:48Z",
+        "permissions": {
+          "actions": "write",
+          "administration": "read",
+          "artifact_metadata": "write",
+          "attestations": "write",
+          "checks": "write",
+          "code_quality": "write",
+          "contents": "write",
+          "copilot_requests": "write",
+          "deployments": "write",
+          "discussions": "write",
+          "drives": "write",
+          "issues": "write",
+          "merge_queues": "write",
+          "metadata": "read",
+          "models": "read",
+          "packages": "write",
+          "pages": "write",
+          "pull_requests": "write",
+          "repository_hooks": "write",
+          "repository_projects": "write",
+          "security_events": "write",
+          "statuses": "write",
+          "vulnerability_alerts": "read"
+        },
+        "events": [
+          "branch_protection_rule",
+          "check_run",
+          "check_suite",
+          "create",
+          "delete",
+          "deployment",
+          "deployment_status",
+          "discussion",
+          "discussion_comment",
+          "fork",
+          "gollum",
+          "issues",
+          "issue_comment",
+          "label",
+          "merge_group",
+          "milestone",
+          "page_build",
+          "public",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "push",
+          "registry_package",
+          "release",
+          "repository",
+          "repository_dispatch",
+          "status",
+          "watch",
+          "workflow_dispatch",
+          "workflow_run"
+        ]
+      },
+      "pull_requests": [
+        {
+          "url": "https://api.github.com/repos/GauravChopada/ledgerline/pulls/6",
+          "id": 4911326893,
+          "number": 6,
+          "head": {
+            "ref": "feat/invoice-csv-export",
+            "sha": "a29ef76bdbf26afc7487e00013191b052f8f2f3d",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          },
+          "base": {
+            "ref": "main",
+            "sha": "df85dbf5111565bf73a8735f92356392222b9b61",
+            "repo": {
+              "id": 1424629190,
+              "url": "https://api.github.com/repos/GauravChopada/ledgerline",
+              "name": "ledgerline"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "reactions": [],
+  "captured_at": "2026-10-18T18:00:07Z"
+}
