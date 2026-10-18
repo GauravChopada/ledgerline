@@ -75,13 +75,23 @@ npm run dev         # restart on change
 
 Tests run against an in-memory database with an injected clock (`buildApp({ db, now })`).
 
+## Deploying
+
+```bash
+docker build -t ledgerline .
+docker run -p 3000:3000 -v ledgerline-data:/data -e PROVIDER_WEBHOOK_SECRET=... ledgerline
+```
+
+The database lives on the `/data` volume. Pull requests get a preview app on Fly.io
+(`.github/workflows/preview.yml`); the workflow needs a `FLY_API_TOKEN` secret in the `preview`
+environment.
+
 ## Roadmap
 
 - Idempotency keys for payment endpoints, and refunds
 - Ingest payment-provider webhooks
 - Pull data access out of route handlers into a repository layer
 - Cut query count on reports and list endpoints
-- Container image and preview deployments
 - CSV export for accountants
 
 ## License
