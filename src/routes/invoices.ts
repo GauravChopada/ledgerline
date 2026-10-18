@@ -2,6 +2,7 @@ import type { FastifyInstance } from 'fastify';
 import type { SQLInputValue } from 'node:sqlite';
 import { z } from 'zod';
 import type { Deps } from '../app.ts';
+import { customerSummary } from '../customer-cache.ts';
 import { type Db, all, get, run, tx } from '../db.ts';
 import { HttpError, IdParams, notFound, parse } from '../http.ts';
 import { newId } from '../ids.ts';
@@ -143,7 +144,14 @@ export function invoiceRoutes(app: FastifyInstance, { db, now }: Deps): void {
 
   app.get('/invoices', async (req) => {
     const q = parse(ListInvoicesQuery, req.query);
-    return listInvoices(db, req.tenantId, q);
+    const page = listInvoices(db, req.tenantId, q);
+    return {
+      ...page,
+      items: page.items.map((invoice) => ({
+        ...invoice,
+        customer: customerSummary(db, req.tenantId, invoice.customer_id),
+      })),
+    };
   });
 
   app.get('/invoices/:id', async (req) => {

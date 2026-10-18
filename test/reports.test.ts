@@ -21,11 +21,24 @@ test('sums revenue per month and currency', async () => {
 
   const res = await acme.request({ method: 'GET', url: '/reports/revenue?year=2026' });
   assert.equal(res.status, 200);
-  assert.deepEqual(res.body.rows, [
-    { month: '2026-01', currency: 'USD', total_cents: 200_00 },
+  const nonZero = res.body.rows.filter((r: { total_cents: number }) => r.total_cents > 0);
+  assert.deepEqual(nonZero, [
     { month: '2026-01', currency: 'EUR', total_cents: 500_00 },
+    { month: '2026-01', currency: 'USD', total_cents: 200_00 },
     { month: '2026-02', currency: 'USD', total_cents: 300_00 },
   ]);
+});
+
+test('reports all twelve months per currency', async () => {
+  const { acme, setClock } = await setup('2026-05-01T09:00:00.000Z');
+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 100_00);
+  setClock('2026-05-20T12:00:00.000Z');
+  await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 100_00, method: 'cash' } });
+
+  const res = await acme.request({ method: 'GET', url: '/reports/revenue?year=2026' });
+  assert.equal(res.body.rows.length, 12);
+  assert.deepEqual(res.body.rows.map((r: { month: string }) => r.month).slice(0, 3), ['2026-01', '2026-02', '2026-03']);
+  assert.equal(res.body.rows[4].total_cents, 100_00);
 });
 
 test('requires a valid year', async () => {

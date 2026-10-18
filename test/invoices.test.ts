@@ -107,3 +107,15 @@ test('filters invoices by status', async () => {
   const everything = await acme.request({ method: 'GET', url: '/invoices' });
   assert.equal(everything.body.items.length, 2);
 });
+
+test('invoice lists embed the customer', async () => {
+  const { acme } = await setup();
+  const customer = await createCustomer(acme, 'Grace Hopper', 'grace@example.com');
+  await acme.request({
+    method: 'POST',
+    url: '/invoices',
+    payload: { customer_id: customer.id, currency: 'USD', lines: [{ description: 'Review', quantity: 1, unit_amount_cents: 90_00 }] },
+  });
+  const res = await acme.request({ method: 'GET', url: '/invoices' });
+  assert.deepEqual(res.body.items[0].customer, { id: customer.id, name: 'Grace Hopper', email: 'grace@example.com' });
+});
