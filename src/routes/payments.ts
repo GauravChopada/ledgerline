@@ -129,7 +129,7 @@ export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps)
     const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent
 
     const refund = tx(db, () => {
-      const payment = get<Payment>(db, `SELECT ${COLUMNS} FROM payments WHERE id = ?`, id);
+      const payment = get<Payment>(db, `SELECT ${COLUMNS} FROM payments WHERE id = ? AND tenant_id = ?`, id, req.tenantId);
       if (!payment) throw notFound('payment');
       const refundable = payment.amount_cents - payment.refunded_cents;
       if (amountCents < 1 || amountCents > refundable) {

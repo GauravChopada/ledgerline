@@ -75,3 +75,12 @@ test('unknown payment', async () => {
   const res = await acme.request({ method: 'POST', url: '/payments/pay_missing/refunds', payload: { amount: 1 } });
   assert.equal(res.status, 404);
 });
+
+test('cannot refund another tenant’s payment', async () => {
+  const { acme, newTenant, provider } = await setup();
+  const globex = newTenant('Globex');
+  const { payment } = await paidByCard(acme, 60_00);
+  const res = await globex.request({ method: 'POST', url: `/payments/${payment.id}/refunds`, payload: { amount: 60 } });
+  assert.equal(res.status, 404);
+  assert.equal(provider.refunds.length, 0);
+});
