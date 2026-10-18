@@ -64,3 +64,19 @@ test('lists a customer’s invoices', async () => {
   assert.equal(res.status, 200);
   assert.deepEqual(res.body.items.map((i: { id: string }) => i.id), [invoice.id]);
 });
+
+test('emails are unique and case-insensitive', async () => {
+  const { acme } = await setup();
+  await createCustomer(acme, 'Ada', 'ada@example.com');
+  const res = await acme.request({ method: 'POST', url: '/customers', payload: { name: 'Ada again', email: 'ADA@example.com' } });
+  assert.equal(res.status, 409);
+  assert.equal(res.body.error, 'customer_exists');
+});
+
+test('changing an email to one already in use is rejected', async () => {
+  const { acme } = await setup();
+  await createCustomer(acme, 'Ada', 'ada@example.com');
+  const bob = await createCustomer(acme, 'Bob', 'bob@example.com');
+  const res = await acme.request({ method: 'PATCH', url: `/customers/${bob.id}`, payload: { email: 'ada@example.com' } });
+  assert.equal(res.status, 409);
+});

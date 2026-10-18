@@ -3,7 +3,7 @@ import type { SQLInputValue } from 'node:sqlite';
 import { z } from 'zod';
 import type { Deps } from '../app.ts';
 import { type Db, all, get, run } from '../db.ts';
-import { IdParams, notFound, parse } from '../http.ts';
+import { HttpError, IdParams, notFound, parse } from '../http.ts';
 import { newId } from '../ids.ts';
 import { PageQuery, decodeCursor, toPage } from '../pagination.ts';
 import { listInvoices } from './invoices.ts';
@@ -20,12 +20,24 @@ const COLUMNS = 'id, name, email, created_at, updated_at';
 
 const CreateCustomer = z.object({
   name: z.string().trim().min(1).max(200),
-  email: z.email().max(320),
+  email: z
+    .email()
+    .max(320)
+    .transform((email) => email.toLowerCase()),
 });
 
 const UpdateCustomer = CreateCustomer.partial().refine((v) => Object.keys(v).length > 0, {
   message: 'provide at least one field to update',
 });
+
+const SQLITE_CONSTRAINT_UNIQUE = 2067;
+
+function rethrowDuplicateEmail(err: unknown): never {
+  if ((err as { errcode?: number }).errcode === SQLITE_CONSTRAINT_UNIQUE) {
+    throw new HttpError(409, 'customer_exists', 'a customer with this email already exists');
+  }
+  throw err;
+}
 
 export function getCustomer(db: Db, tenantId: string, id: string): Customer | undefined {
   return get<Customer>(db, `SELECT ${COLUMNS} FROM customers WHERE id = ? AND tenant_id = ?`, id, tenantId);
@@ -36,16 +48,20 @@ export function customerRoutes(app: FastifyInstance, { db, now }: Deps): void {
     const body = parse(CreateCustomer, req.body);
     const timestamp = now().toISOString();
     const id = newId('cus');
-    run(
-      db,
-      'INSERT INTO customers (id, tenant_id, name, email, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)',
-      id,
-      req.tenantId,
-      body.name,
-      body.email,
-      timestamp,
-      timestamp,
-    );
+    try {
+      run(
+        db,
+        'INSERT INTO customers (id, tenant_id, name, email, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)',
+        id,
+        req.tenantId,
+        body.name,
+        body.email,
+        timestamp,
+        timestamp,
+      );
+    } catch (err) {
+      rethrowDuplicateEmail(err);
+    }
     return reply.code(201).send(getCustomer(db, req.tenantId, id));
   });
 
@@ -79,15 +95,19 @@ export function customerRoutes(app: FastifyInstance, { db, now }: Deps): void {
     const body = parse(UpdateCustomer, req.body);
     const existing = getCustomer(db, req.tenantId, id);
     if (!existing) throw notFound('customer');
-    run(
-      db,
-      'UPDATE customers SET name = ?, email = ?, updated_at = ? WHERE id = ? AND tenant_id = ?',
-      body.name ?? existing.name,
-      body.email ?? existing.email,
-      now().toISOString(),
-      id,
-      req.tenantId,
-    );
+    try {
+      run(
+        db,
+        'UPDATE customers SET name = ?, email = ?, updated_at = ? WHERE id = ? AND tenant_id = ?',
+        body.name ?? existing.name,
+        body.email ?? existing.email,
+        now().toISOString(),
+        id,
+        req.tenantId,
+      );
+    } catch (err) {
+      rethrowDuplicateEmail(err);
+    }
     return getCustomer(db, req.tenantId, id);
   });
 
