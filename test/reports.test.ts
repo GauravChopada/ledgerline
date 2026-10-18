@@ -9,7 +9,7 @@ test('sums revenue per month and currency', async () => {
   const eur = await createOpenInvoice(acme, customer.id, 500_00, 'EUR');
 
   const pay = (invoiceId: string, amount: number) =>
-    acme.request({ method: 'POST', url: `/invoices/${invoiceId}/payments`, payload: { amount_cents: amount, method: 'card' } });
+    acme.request({ method: 'POST', url: `/invoices/${invoiceId}/payments`, payload: { amount_cents: amount, method: 'bank_transfer' } });
 
   setClock('2026-01-15T12:00:00.000Z');
   await pay(usd.id, 200_00);

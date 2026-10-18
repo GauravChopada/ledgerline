@@ -14,7 +14,7 @@ test('partial then full payment marks the invoice paid', async () => {
   assert.equal(first.status, 201);
   assert.equal((await acme.request({ method: 'GET', url: `/invoices/${invoice.id}` })).body.status, 'open');
 
-  await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 200_00, method: 'card' } });
+  await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 200_00, method: 'card', source: 'tok_visa' } });
   const after = await acme.request({ method: 'GET', url: `/invoices/${invoice.id}` });
   assert.equal(after.body.status, 'paid');
   assert.equal(after.body.amount_paid_cents, 300_00);
