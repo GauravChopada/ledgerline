@@ -84,3 +84,11 @@ test('cannot refund another tenant’s payment', async () => {
   assert.equal(res.status, 404);
   assert.equal(provider.refunds.length, 0);
 });
+
+test('refunds sub-dollar amounts to the exact cent', async () => {
+  const { acme } = await setup();
+  const { payment } = await paidByCard(acme, 10_00);
+  const res = await acme.request({ method: 'POST', url: `/payments/${payment.id}/refunds`, payload: { amount: 0.29 } });
+  assert.equal(res.status, 201);
+  assert.equal(res.body.amount_cents, 29);
+});

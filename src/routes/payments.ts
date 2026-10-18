@@ -126,7 +126,8 @@ export function paymentRoutes(app: FastifyInstance, { db, now, provider }: Deps)
   app.post('/payments/:id/refunds', async (req, reply) => {
     const { id } = parse(IdParams, req.params);
     const body = parse(CreateRefund, req.body);
-    const amountCents = Math.trunc(body.amount * 100); // drop anything below a cent
+    // Nudge by EPSILON so values like 0.29 (0.28999...) don't lose a cent to float representation.
+    const amountCents = Math.trunc((body.amount + Number.EPSILON) * 100);
 
     const refund = tx(db, () => {
       const payment = get<Payment>(db, `SELECT ${COLUMNS} FROM payments WHERE id = ? AND tenant_id = ?`, id, req.tenantId);
