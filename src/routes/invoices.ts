@@ -1,39 +1,12 @@
 import type { FastifyInstance } from 'fastify';
-import type { SQLInputValue } from 'node:sqlite';
 import { z } from 'zod';
 import type { Deps } from '../app.ts';
-import { type Db, all, get, run, tx } from '../db.ts';
+import { get, run, tx } from '../db.ts';
 import { HttpError, IdParams, notFound, parse } from '../http.ts';
 import { newId } from '../ids.ts';
 import { Cents, Currency, lineTotal, sumCents } from '../money.ts';
-import { type Page, PageQuery, decodeCursor, toPage } from '../pagination.ts';
-
-export const INVOICE_STATUSES = ['draft', 'open', 'paid', 'void'] as const;
-export type InvoiceStatus = (typeof INVOICE_STATUSES)[number];
-
-export type Invoice = {
-  id: string;
-  customer_id: string;
-  number: string;
-  status: InvoiceStatus;
-  currency: string;
-  total_cents: number;
-  amount_paid_cents: number;
-  due_at: string | null;
-  issued_at: string | null;
-  created_at: string;
-};
-
-export type InvoiceLine = {
-  id: string;
-  position: number;
-  description: string;
-  quantity: number;
-  unit_amount_cents: number;
-};
-
-const COLUMNS =
-  'id, customer_id, number, status, currency, total_cents, amount_paid_cents, due_at, issued_at, created_at';
+import { PageQuery } from '../pagination.ts';
+import { INVOICE_STATUSES, getInvoice, listInvoices } from '../repo/invoices.ts';
 
 const LineInput = z.object({
   description: z.string().trim().min(1).max(500),
@@ -49,50 +22,6 @@ const CreateInvoice = z.object({
 });
 
 const ListInvoicesQuery = PageQuery.extend({ status: z.enum(INVOICE_STATUSES).optional() });
-
-export type ListInvoicesOptions = {
-  status?: InvoiceStatus;
-  customerId?: string;
-  cursor?: string;
-  limit: number;
-};
-
-/** Newest first. Without `status`, invoices in every status are returned. */
-export function listInvoices(db: Db, tenantId: string, opts: ListInvoicesOptions): Page<Invoice> {
-  const where = ['tenant_id = ?'];
-  const params: SQLInputValue[] = [tenantId];
-  if (opts.status) {
-    where.push('status = ?');
-    params.push(opts.status);
-  }
-  if (opts.customerId) {
-    where.push('customer_id = ?');
-    params.push(opts.customerId);
-  }
-  if (opts.cursor) {
-    const cursor = decodeCursor(opts.cursor);
-    where.push('(created_at, id) < (?, ?)');
-    params.push(cursor.createdAt, cursor.id);
-  }
-  const rows = all<Invoice>(
-    db,
-    `SELECT ${COLUMNS} FROM invoices WHERE ${where.join(' AND ')} ORDER BY created_at DESC, id DESC LIMIT ?`,
-    ...params,
-    opts.limit + 1,
-  );
-  return toPage(rows, opts.limit);
-}
-
-export function getInvoice(db: Db, tenantId: string, id: string): (Invoice & { lines: InvoiceLine[] }) | undefined {
-  const invoice = get<Invoice>(db, `SELECT ${COLUMNS} FROM invoices WHERE id = ? AND tenant_id = ?`, id, tenantId);
-  if (!invoice) return undefined;
-  const lines = all<InvoiceLine>(
-    db,
-    'SELECT id, position, description, quantity, unit_amount_cents FROM invoice_lines WHERE invoice_id = ? ORDER BY position',
-    id,
-  );
-  return { ...invoice, lines };
-}
 
 export function invoiceRoutes(app: FastifyInstance, { db, now }: Deps): void {
   app.post('/invoices', async (req, reply) => {

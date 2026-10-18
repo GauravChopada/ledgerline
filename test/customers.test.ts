@@ -46,11 +46,12 @@ test('paginates customers newest first', async () => {
   assert.equal(third.body.next_cursor, null);
 });
 
-test('rejects a malformed cursor', async () => {
+test('a malformed cursor ends the list', async () => {
   const { acme } = await setup();
+  await createCustomer(acme);
   const res = await acme.request({ method: 'GET', url: '/customers?cursor=garbage' });
-  assert.equal(res.status, 400);
-  assert.equal(res.body.error, 'invalid_cursor');
+  assert.equal(res.status, 200);
+  assert.deepEqual(res.body, { items: [], next_cursor: null });
 });
 
 test('lists a customer’s invoices', async () => {
