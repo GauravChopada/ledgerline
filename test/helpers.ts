@@ -46,7 +46,9 @@ export async function setup(start = '2026-03-01T10:00:00.000Z') {
   };
 }
 
-export async function createCustomer(t: TestClient, name = 'Ada Lovelace', email = 'ada@example.com') {
+let customerSeq = 0;
+
+export async function createCustomer(t: TestClient, name = 'Ada Lovelace', email = `ada.${++customerSeq}@example.com`) {
   const res = await t.request({ method: 'POST', url: '/customers', payload: { name, email } });
   if (res.status !== 201) throw new Error(`createCustomer failed: ${JSON.stringify(res.body)}`);
   return res.body;
