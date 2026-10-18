@@ -69,3 +69,13 @@ test('lists payments newest first', async () => {
   const res = await acme.request({ method: 'GET', url: '/payments' });
   assert.deepEqual(res.body.items.map((p: { amount_cents: number }) => p.amount_cents), [50_00, 100_00]);
 });
+
+test('filters payments by method', async () => {
+  const { acme } = await setup();
+  const invoice = await createOpenInvoice(acme, (await createCustomer(acme)).id, 300_00);
+  for (const method of ['cash', 'bank_transfer', 'cash']) {
+    await acme.request({ method: 'POST', url: `/invoices/${invoice.id}/payments`, payload: { amount_cents: 10_00, method } });
+  }
+  const res = await acme.request({ method: 'GET', url: '/payments?method=cash' });
+  assert.equal(res.body.items.length, 2);
+});

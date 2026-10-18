@@ -19,9 +19,16 @@ export type Payment = {
 
 const COLUMNS = 'id, invoice_id, amount_cents, method, created_at';
 
+const PaymentMethod = z.enum(['bank_transfer', 'card', 'cash', 'other']);
+
+// `?method=cash` or `?method=cash&method=card`
+const ListPaymentsQuery = PageQuery.extend({
+  method: z.union([PaymentMethod, z.array(PaymentMethod).min(1)]).optional(),
+});
+
 const RecordPayment = z.object({
   amount_cents: Cents.positive(),
-  method: z.enum(['bank_transfer', 'card', 'cash', 'other']),
+  method: PaymentMethod,
 });
 
 export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {
@@ -72,9 +79,14 @@ export function paymentRoutes(app: FastifyInstance, { db, now }: Deps): void {
   });
 
   app.get('/payments', async (req) => {
-    const q = parse(PageQuery, req.query);
+    const q = parse(ListPaymentsQuery, req.query);
     const where = ['tenant_id = ?'];
     const params: SQLInputValue[] = [req.tenantId];
+    if (q.method) {
+      const methods = Array.isArray(q.method) ? q.method : [q.method];
+      where.push(`method IN (${methods.map(() => '?').join(', ')})`);
+      params.push(...methods);
+    }
     if (q.cursor) {
       const cursor = decodeCursor(q.cursor);
       where.push('(created_at, id) < (?, ?)');
