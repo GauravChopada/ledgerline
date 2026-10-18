@@ -42,6 +42,7 @@ Every endpoint except `/health` needs `Authorization: Bearer <api key>`.
 | `GET` | `/customers/:id/invoices` | all of a customer's invoices, any status |
 | `POST` | `/invoices` | `{ customer_id, currency, due_at?, lines: [{ description, quantity, unit_amount_cents }] }`, created as `draft` |
 | `GET` | `/invoices` | paginated, optional `?status=draft\|open\|paid\|void` |
+| `GET` | `/invoices/export.csv` | CSV for accountants; optional `?status=`, `?sort=created_at\|issued_at\|due_at`, `?order=asc\|desc` |
 | `GET` | `/invoices/:id` | includes lines |
 | `POST` | `/invoices/:id/finalize` | `draft` → `open` |
 | `POST` | `/invoices/:id/void` | only without recorded payments |
@@ -82,7 +83,6 @@ Tests run against an in-memory database with an injected clock (`buildApp({ db, 
 - Pull data access out of route handlers into a repository layer
 - Cut query count on reports and list endpoints
 - Container image and preview deployments
-- CSV export for accountants
 
 ## License
 
