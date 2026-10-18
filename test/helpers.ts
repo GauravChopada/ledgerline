@@ -2,6 +2,7 @@ import type { FastifyInstance, InjectOptions } from 'fastify';
 import { after } from 'node:test';
 import { buildApp } from '../src/app.ts';
 import { openDb } from '../src/db.ts';
+import { sandboxProvider } from '../src/provider.ts';
 import { createTenant } from '../src/tenants.ts';
 
 export type TestClient = {
@@ -18,7 +19,8 @@ export async function setup(start = '2026-03-01T10:00:00.000Z') {
   const db = openDb(':memory:');
   let clock = new Date(start).getTime();
   const now = () => new Date((clock += 1000));
-  const app = buildApp({ db, now });
+  const provider = sandboxProvider();
+  const app = buildApp({ db, now, provider });
   await app.ready();
   after(() => app.close());
 
@@ -39,6 +41,7 @@ export async function setup(start = '2026-03-01T10:00:00.000Z') {
     db,
     app,
     acme,
+    provider,
     newTenant: (name: string) => client(createTenant(db, name).apiKey),
     setClock: (iso: string) => {
       clock = new Date(iso).getTime() - 1000;
